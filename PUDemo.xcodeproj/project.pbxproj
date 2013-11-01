@@ -50,6 +50,7 @@
 		936F80EE1823308D004F4DAA /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80EA1823308D004F4DAA /* NSDate-Utilities.m */; };
 		936F80F218233136004F4DAA /* PUUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80F118233136004F4DAA /* PUUtil.m */; };
 		936F80F618234047004F4DAA /* KLSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80F518234047004F4DAA /* KLSwitch.m */; };
+		936F80F918234327004F4DAA /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80F818234327004F4DAA /* UIImage+WebP.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,8 @@
 		936F80F118233136004F4DAA /* PUUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUUtil.m; sourceTree = "<group>"; };
 		936F80F418234047004F4DAA /* KLSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLSwitch.h; sourceTree = "<group>"; };
 		936F80F518234047004F4DAA /* KLSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLSwitch.m; sourceTree = "<group>"; };
+		936F80F718234327004F4DAA /* UIImage+WebP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WebP.h"; sourceTree = "<group>"; };
+		936F80F818234327004F4DAA /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +279,8 @@
 				854B5AF718227D15003727A3 /* UIImage+GIF.m */,
 				854B5AF818227D15003727A3 /* UIImage+MultiFormat.h */,
 				854B5AF918227D15003727A3 /* UIImage+MultiFormat.m */,
+				936F80F718234327004F4DAA /* UIImage+WebP.h */,
+				936F80F818234327004F4DAA /* UIImage+WebP.m */,
 				854B5AFA18227D15003727A3 /* UIImageView+WebCache.h */,
 				854B5AFB18227D15003727A3 /* UIImageView+WebCache.m */,
 			);
@@ -489,6 +494,7 @@
 				936F80EE1823308D004F4DAA /* NSDate-Utilities.m in Sources */,
 				854B5B0418227D15003727A3 /* SDWebImagePrefetcher.m in Sources */,
 				854B5B0318227D15003727A3 /* SDWebImageManager.m in Sources */,
+				936F80F918234327004F4DAA /* UIImage+WebP.m in Sources */,
 				854B5AFC18227D15003727A3 /* Reachability.m in Sources */,
 				936F80F618234047004F4DAA /* KLSwitch.m in Sources */,
 				854B5ABF18227935003727A3 /* ASIAuthenticationDialog.m in Sources */,
