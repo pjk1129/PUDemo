@@ -49,6 +49,7 @@
 		936F80E618232F61004F4DAA /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80E518232F61004F4DAA /* NSString+Base64.m */; };
 		936F80EE1823308D004F4DAA /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80EA1823308D004F4DAA /* NSDate-Utilities.m */; };
 		936F80F218233136004F4DAA /* PUUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80F118233136004F4DAA /* PUUtil.m */; };
+		936F80F618234047004F4DAA /* KLSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80F518234047004F4DAA /* KLSwitch.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,8 @@
 		936F80EA1823308D004F4DAA /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
 		936F80F018233136004F4DAA /* PUUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUUtil.h; sourceTree = "<group>"; };
 		936F80F118233136004F4DAA /* PUUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUUtil.m; sourceTree = "<group>"; };
+		936F80F418234047004F4DAA /* KLSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KLSwitch.h; sourceTree = "<group>"; };
+		936F80F518234047004F4DAA /* KLSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLSwitch.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,7 @@
 		854B5A8D182278EE003727A3 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				936F80F318234047004F4DAA /* KLSwitch */,
 				854B5ADF18227D15003727A3 /* Reachability */,
 				854B5AE218227D15003727A3 /* SDWebImageV3 */,
 				854B5A9018227934003727A3 /* ASIHttpRequest */,
@@ -374,6 +378,15 @@
 			path = Expand;
 			sourceTree = "<group>";
 		};
+		936F80F318234047004F4DAA /* KLSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				936F80F418234047004F4DAA /* KLSwitch.h */,
+				936F80F518234047004F4DAA /* KLSwitch.m */,
+			);
+			path = KLSwitch;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -477,6 +490,7 @@
 				854B5B0418227D15003727A3 /* SDWebImagePrefetcher.m in Sources */,
 				854B5B0318227D15003727A3 /* SDWebImageManager.m in Sources */,
 				854B5AFC18227D15003727A3 /* Reachability.m in Sources */,
+				936F80F618234047004F4DAA /* KLSwitch.m in Sources */,
 				854B5ABF18227935003727A3 /* ASIAuthenticationDialog.m in Sources */,
 				854B5AFF18227D15003727A3 /* SDWebImageCompat.m in Sources */,
 				854B5B0B182285FF003727A3 /* PUHttpRequest.m in Sources */,
