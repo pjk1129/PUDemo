@@ -41,19 +41,19 @@
     return hud;
 }
 
-+ (void)showTipsView:(NSString *)tips atView:(UIView *)view
++ (void)showMessages:(NSString *)messgae atView:(UIView *)view
 {
-    [self showTipsView:tips atView:view afterDelay:2.5f yOffset:0.0];
+    [self showMessages:messgae atView:view afterDelay:2.5f yOffset:0.0];
 }
 
-+ (void)showTipsView:(NSString *)tips
++ (void)showMessages:(NSString *)messgae
               atView:(UIView *)view
           afterDelay:(NSTimeInterval)delay
 {
-    [self showTipsView:tips atView:view afterDelay:delay yOffset:0.0f];
+    [self showMessages:messgae atView:view afterDelay:delay yOffset:0.0f];
 }
 
-+ (void)showTipsView:(NSString *)tips
++ (void)showMessages:(NSString *)messgae
               atView:(UIView *)view
           afterDelay:(NSTimeInterval)delay
              yOffset:(CGFloat)yOffset
@@ -62,7 +62,7 @@
 	
 	// Configure for text only and offset down
 	hud.mode = MBProgressHUDModeText;
-	hud.detailsLabelText = tips;
+	hud.detailsLabelText = messgae;
 	hud.margin = 10.f;
 	hud.yOffset = yOffset;
 	hud.removeFromSuperViewOnHide = YES;
@@ -70,14 +70,14 @@
 	[hud hide:YES afterDelay:delay];
 }
 
-+ (void)showTipsView:(NSString *)tips
++ (void)showMessages:(NSString *)messgae
               atView:(UIView *)view
            withImage:(UIImage *)image
 {
-    [self showTipsView:tips atView:view withImage:image afterDelay:1.0f];
+    [self showMessages:messgae atView:view withImage:image afterDelay:1.0f];
 }
 
-+ (void)showTipsView:(NSString *)tips
++ (void)showMessages:(NSString *)messgae
               atView:(UIView *)view
            withImage:(UIImage *)image
           afterDelay:(NSTimeInterval)delay
@@ -90,7 +90,7 @@
     // Set custom view mode
     HUD.mode = MBProgressHUDModeCustomView;
 	
-    HUD.labelText = tips;
+    HUD.labelText = messgae;
 	
     [HUD show:YES];
 	[HUD hide:YES afterDelay:delay];
