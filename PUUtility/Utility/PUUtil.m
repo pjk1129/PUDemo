@@ -136,6 +136,13 @@
     return NO;
 }
 
++ (NSString *)stringDecimalStyleFromNumber:(NSInteger)number;
+{
+    NSNumberFormatter  *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    return [formatter stringFromNumber:[NSNumber numberWithInteger:number]];
+}
+
 #pragma mark - NSArray Utility
 + (BOOL)arrayIsNullAndEmpty:(NSArray *)array
 {

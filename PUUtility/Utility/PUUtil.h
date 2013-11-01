@@ -33,10 +33,13 @@
 + (NSString *)stringWithSourceString:(NSString *)aString;
 + (BOOL)stringIsNullAndEmpty:(NSString *)aString;
 
++ (NSString *)stringDecimalStyleFromNumber:(NSInteger)number;
+
 #pragma mark - NSArray Utility
 + (BOOL)arrayIsNullAndEmpty:(NSArray *)array;
 
 #pragma mark - NSDictionary Utility
 + (BOOL)dictionaryIsNullAndEmpty:(NSDictionary *)dic;
+
 
 @end
