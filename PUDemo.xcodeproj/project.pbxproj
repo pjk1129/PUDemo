@@ -55,6 +55,12 @@
 		936F80FF182345B4004F4DAA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80FD182345B4004F4DAA /* MBProgressHUD.m */; };
 		936F81021823460B004F4DAA /* MBProgressHUD+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F81011823460B004F4DAA /* MBProgressHUD+Addition.m */; };
 		936F810518236917004F4DAA /* PUPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 936F810418236917004F4DAA /* PUPhotoBrowser.bundle */; };
+		936F810818236C03004F4DAA /* PUPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F810718236C03004F4DAA /* PUPhotoBrowser.m */; };
+		936F810B18236D3B004F4DAA /* PUPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F810A18236D3B004F4DAA /* PUPhoto.m */; };
+		936F810E18236DBA004F4DAA /* PUPhotoProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F810D18236DBA004F4DAA /* PUPhotoProgressView.m */; };
+		936F811118236E33004F4DAA /* PUPhotoToolbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F811018236E33004F4DAA /* PUPhotoToolbar.m */; };
+		936F811418236EF3004F4DAA /* PUPhotoLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F811318236EF3004F4DAA /* PUPhotoLoadingView.m */; };
+		936F811718236FCE004F4DAA /* PUPhotoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F811618236FCE004F4DAA /* PUPhotoView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +162,18 @@
 		936F81001823460B004F4DAA /* MBProgressHUD+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Addition.h"; sourceTree = "<group>"; };
 		936F81011823460B004F4DAA /* MBProgressHUD+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Addition.m"; sourceTree = "<group>"; };
 		936F810418236917004F4DAA /* PUPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PUPhotoBrowser.bundle; sourceTree = "<group>"; };
+		936F810618236C03004F4DAA /* PUPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPhotoBrowser.h; sourceTree = "<group>"; };
+		936F810718236C03004F4DAA /* PUPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPhotoBrowser.m; sourceTree = "<group>"; };
+		936F810918236D3B004F4DAA /* PUPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPhoto.h; sourceTree = "<group>"; };
+		936F810A18236D3B004F4DAA /* PUPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPhoto.m; sourceTree = "<group>"; };
+		936F810C18236DBA004F4DAA /* PUPhotoProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPhotoProgressView.h; sourceTree = "<group>"; };
+		936F810D18236DBA004F4DAA /* PUPhotoProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPhotoProgressView.m; sourceTree = "<group>"; };
+		936F810F18236E33004F4DAA /* PUPhotoToolbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPhotoToolbar.h; sourceTree = "<group>"; };
+		936F811018236E33004F4DAA /* PUPhotoToolbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPhotoToolbar.m; sourceTree = "<group>"; };
+		936F811218236EF3004F4DAA /* PUPhotoLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPhotoLoadingView.h; sourceTree = "<group>"; };
+		936F811318236EF3004F4DAA /* PUPhotoLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPhotoLoadingView.m; sourceTree = "<group>"; };
+		936F811518236FCE004F4DAA /* PUPhotoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPhotoView.h; sourceTree = "<group>"; };
+		936F811618236FCE004F4DAA /* PUPhotoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPhotoView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -420,6 +438,18 @@
 			isa = PBXGroup;
 			children = (
 				936F810418236917004F4DAA /* PUPhotoBrowser.bundle */,
+				936F810618236C03004F4DAA /* PUPhotoBrowser.h */,
+				936F810718236C03004F4DAA /* PUPhotoBrowser.m */,
+				936F810918236D3B004F4DAA /* PUPhoto.h */,
+				936F810A18236D3B004F4DAA /* PUPhoto.m */,
+				936F810C18236DBA004F4DAA /* PUPhotoProgressView.h */,
+				936F810D18236DBA004F4DAA /* PUPhotoProgressView.m */,
+				936F810F18236E33004F4DAA /* PUPhotoToolbar.h */,
+				936F811018236E33004F4DAA /* PUPhotoToolbar.m */,
+				936F811218236EF3004F4DAA /* PUPhotoLoadingView.h */,
+				936F811318236EF3004F4DAA /* PUPhotoLoadingView.m */,
+				936F811518236FCE004F4DAA /* PUPhotoView.h */,
+				936F811618236FCE004F4DAA /* PUPhotoView.m */,
 			);
 			path = PhotoBrowser;
 			sourceTree = "<group>";
@@ -522,6 +552,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				936F80E618232F61004F4DAA /* NSString+Base64.m in Sources */,
+				936F811118236E33004F4DAA /* PUPhotoToolbar.m in Sources */,
 				854B5AC318227935003727A3 /* ASIFormDataRequest.m in Sources */,
 				854B5AC418227935003727A3 /* ASIHTTPRequest.m in Sources */,
 				859EC06218224DD70050C6C6 /* AppDelegate.m in Sources */,
@@ -529,10 +560,12 @@
 				854B5B0418227D15003727A3 /* SDWebImagePrefetcher.m in Sources */,
 				854B5B0318227D15003727A3 /* SDWebImageManager.m in Sources */,
 				936F80F918234327004F4DAA /* UIImage+WebP.m in Sources */,
+				936F810818236C03004F4DAA /* PUPhotoBrowser.m in Sources */,
 				854B5AFC18227D15003727A3 /* Reachability.m in Sources */,
 				936F80F618234047004F4DAA /* KLSwitch.m in Sources */,
 				854B5ABF18227935003727A3 /* ASIAuthenticationDialog.m in Sources */,
 				854B5AFF18227D15003727A3 /* SDWebImageCompat.m in Sources */,
+				936F811718236FCE004F4DAA /* PUPhotoView.m in Sources */,
 				854B5B0B182285FF003727A3 /* PUHttpRequest.m in Sources */,
 				854B5AC618227935003727A3 /* ASINetworkQueue.m in Sources */,
 				854B5B0018227D15003727A3 /* SDWebImageDecoder.m in Sources */,
@@ -549,10 +582,13 @@
 				854B5AC518227935003727A3 /* ASIInputStream.m in Sources */,
 				854B5AC018227935003727A3 /* ASIDataCompressor.m in Sources */,
 				854B5AFE18227D15003727A3 /* SDImageCache.m in Sources */,
+				936F810B18236D3B004F4DAA /* PUPhoto.m in Sources */,
 				854B5B0518227D15003727A3 /* UIButton+WebCache.m in Sources */,
 				859EC05E18224DD70050C6C6 /* main.m in Sources */,
+				936F810E18236DBA004F4DAA /* PUPhotoProgressView.m in Sources */,
 				854B5B0818227D15003727A3 /* UIImageView+WebCache.m in Sources */,
 				854B5AC118227935003727A3 /* ASIDataDecompressor.m in Sources */,
+				936F811418236EF3004F4DAA /* PUPhotoLoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
