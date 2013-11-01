@@ -51,6 +51,9 @@
 		936F80F218233136004F4DAA /* PUUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80F118233136004F4DAA /* PUUtil.m */; };
 		936F80F618234047004F4DAA /* KLSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80F518234047004F4DAA /* KLSwitch.m */; };
 		936F80F918234327004F4DAA /* UIImage+WebP.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80F818234327004F4DAA /* UIImage+WebP.m */; };
+		936F80FE182345B4004F4DAA /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 936F80FB182345B4004F4DAA /* MBProgressHUD.bundle */; };
+		936F80FF182345B4004F4DAA /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80FD182345B4004F4DAA /* MBProgressHUD.m */; };
+		936F81021823460B004F4DAA /* MBProgressHUD+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F81011823460B004F4DAA /* MBProgressHUD+Addition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +149,11 @@
 		936F80F518234047004F4DAA /* KLSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KLSwitch.m; sourceTree = "<group>"; };
 		936F80F718234327004F4DAA /* UIImage+WebP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WebP.h"; sourceTree = "<group>"; };
 		936F80F818234327004F4DAA /* UIImage+WebP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WebP.m"; sourceTree = "<group>"; };
+		936F80FB182345B4004F4DAA /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		936F80FC182345B4004F4DAA /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		936F80FD182345B4004F4DAA /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		936F81001823460B004F4DAA /* MBProgressHUD+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+Addition.h"; sourceTree = "<group>"; };
+		936F81011823460B004F4DAA /* MBProgressHUD+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+Addition.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +196,7 @@
 		854B5A8D182278EE003727A3 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				936F80FA182345B4004F4DAA /* MBProgressHUD */,
 				936F80F318234047004F4DAA /* KLSwitch */,
 				854B5ADF18227D15003727A3 /* Reachability */,
 				854B5AE218227D15003727A3 /* SDWebImageV3 */,
@@ -392,6 +401,18 @@
 			path = KLSwitch;
 			sourceTree = "<group>";
 		};
+		936F80FA182345B4004F4DAA /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				936F80FB182345B4004F4DAA /* MBProgressHUD.bundle */,
+				936F80FC182345B4004F4DAA /* MBProgressHUD.h */,
+				936F80FD182345B4004F4DAA /* MBProgressHUD.m */,
+				936F81001823460B004F4DAA /* MBProgressHUD+Addition.h */,
+				936F81011823460B004F4DAA /* MBProgressHUD+Addition.m */,
+			);
+			path = MBProgressHUD;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -469,6 +490,7 @@
 			files = (
 				859EC05C18224DD70050C6C6 /* InfoPlist.strings in Resources */,
 				859EC06418224DD70050C6C6 /* Images.xcassets in Resources */,
+				936F80FE182345B4004F4DAA /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +524,7 @@
 				854B5B0B182285FF003727A3 /* PUHttpRequest.m in Sources */,
 				854B5AC618227935003727A3 /* ASINetworkQueue.m in Sources */,
 				854B5B0018227D15003727A3 /* SDWebImageDecoder.m in Sources */,
+				936F81021823460B004F4DAA /* MBProgressHUD+Addition.m in Sources */,
 				854B5B0718227D15003727A3 /* UIImage+MultiFormat.m in Sources */,
 				936F80F218233136004F4DAA /* PUUtil.m in Sources */,
 				854B5B0218227D15003727A3 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -509,6 +532,7 @@
 				854B5B0F18229C22003727A3 /* TestViewController.m in Sources */,
 				854B5B0618227D15003727A3 /* UIImage+GIF.m in Sources */,
 				854B5AC218227935003727A3 /* ASIDownloadCache.m in Sources */,
+				936F80FF182345B4004F4DAA /* MBProgressHUD.m in Sources */,
 				854B5AFD18227D15003727A3 /* NSData+GIF.m in Sources */,
 				854B5AC518227935003727A3 /* ASIInputStream.m in Sources */,
 				854B5AC018227935003727A3 /* ASIDataCompressor.m in Sources */,
