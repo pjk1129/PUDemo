@@ -46,6 +46,9 @@
 		859EC06D18224DD70050C6C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859EC05518224DD70050C6C6 /* UIKit.framework */; };
 		859EC07518224DD70050C6C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 859EC07318224DD70050C6C6 /* InfoPlist.strings */; };
 		859EC07718224DD70050C6C6 /* PUDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 859EC07618224DD70050C6C6 /* PUDemoTests.m */; };
+		936F80E618232F61004F4DAA /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80E518232F61004F4DAA /* NSString+Base64.m */; };
+		936F80EE1823308D004F4DAA /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80EA1823308D004F4DAA /* NSDate-Utilities.m */; };
+		936F80F218233136004F4DAA /* PUUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80F118233136004F4DAA /* PUUtil.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,6 +133,13 @@
 		859EC07218224DD70050C6C6 /* PUDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PUDemoTests-Info.plist"; sourceTree = "<group>"; };
 		859EC07418224DD70050C6C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		859EC07618224DD70050C6C6 /* PUDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PUDemoTests.m; sourceTree = "<group>"; };
+		936F80E218232E09004F4DAA /* PUCONST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PUCONST.h; sourceTree = "<group>"; };
+		936F80E418232F61004F4DAA /* NSString+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Base64.h"; sourceTree = "<group>"; };
+		936F80E518232F61004F4DAA /* NSString+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Base64.m"; sourceTree = "<group>"; };
+		936F80E91823308D004F4DAA /* NSDate-Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate-Utilities.h"; sourceTree = "<group>"; };
+		936F80EA1823308D004F4DAA /* NSDate-Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate-Utilities.m"; sourceTree = "<group>"; };
+		936F80F018233136004F4DAA /* PUUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUUtil.h; sourceTree = "<group>"; };
+		936F80F118233136004F4DAA /* PUUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUUtil.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,7 +192,11 @@
 		854B5A8E182278EE003727A3 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				936F80E318232F11004F4DAA /* Expand */,
 				854B5A8F182278EE003727A3 /* BaseHttpRequest */,
+				936F80E218232E09004F4DAA /* PUCONST.h */,
+				936F80F018233136004F4DAA /* PUUtil.h */,
+				936F80F118233136004F4DAA /* PUUtil.m */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -349,6 +363,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		936F80E318232F11004F4DAA /* Expand */ = {
+			isa = PBXGroup;
+			children = (
+				936F80E91823308D004F4DAA /* NSDate-Utilities.h */,
+				936F80EA1823308D004F4DAA /* NSDate-Utilities.m */,
+				936F80E418232F61004F4DAA /* NSString+Base64.h */,
+				936F80E518232F61004F4DAA /* NSString+Base64.m */,
+			);
+			path = Expand;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -444,9 +469,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				936F80E618232F61004F4DAA /* NSString+Base64.m in Sources */,
 				854B5AC318227935003727A3 /* ASIFormDataRequest.m in Sources */,
 				854B5AC418227935003727A3 /* ASIHTTPRequest.m in Sources */,
 				859EC06218224DD70050C6C6 /* AppDelegate.m in Sources */,
+				936F80EE1823308D004F4DAA /* NSDate-Utilities.m in Sources */,
 				854B5B0418227D15003727A3 /* SDWebImagePrefetcher.m in Sources */,
 				854B5B0318227D15003727A3 /* SDWebImageManager.m in Sources */,
 				854B5AFC18227D15003727A3 /* Reachability.m in Sources */,
@@ -456,6 +483,7 @@
 				854B5AC618227935003727A3 /* ASINetworkQueue.m in Sources */,
 				854B5B0018227D15003727A3 /* SDWebImageDecoder.m in Sources */,
 				854B5B0718227D15003727A3 /* UIImage+MultiFormat.m in Sources */,
+				936F80F218233136004F4DAA /* PUUtil.m in Sources */,
 				854B5B0218227D15003727A3 /* SDWebImageDownloaderOperation.m in Sources */,
 				854B5B0118227D15003727A3 /* SDWebImageDownloader.m in Sources */,
 				854B5B0F18229C22003727A3 /* TestViewController.m in Sources */,
@@ -593,6 +621,7 @@
 				GCC_PREFIX_HEADER = "PUDemo/PUDemo-Prefix.pch";
 				INFOPLIST_FILE = "PUDemo/PUDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -606,6 +635,7 @@
 				GCC_PREFIX_HEADER = "PUDemo/PUDemo-Prefix.pch";
 				INFOPLIST_FILE = "PUDemo/PUDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
