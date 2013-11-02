@@ -72,6 +72,7 @@
     _progressView.progress = progress;
     if (progress >= 1.0) {
         [_progressView removeFromSuperview];
+        _progressView = nil;
     }
 }
 

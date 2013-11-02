@@ -73,10 +73,10 @@
         _photo.srcImageView.image = nil;
         
         // 不是gif，就马上开始下载
-        if (![_photo.urlStr hasSuffix:@"gif"]) {
+        if (![_photo.middleUrl hasSuffix:@"gif"]) {
             __unsafe_unretained PUPhotoView *photoView = self;
             __unsafe_unretained PUPhoto *photo = _photo;
-            [_imageView setImageWithURLString:_photo.urlStr
+            [_imageView setImageWithURLString:_photo.middleUrl
                              placeholderImage:_photo.placeholder
                                       options:SDWebImageRetryFailed|SDWebImageLowPriority
                                     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
@@ -110,7 +110,7 @@
         __unsafe_unretained PUPhotoView *photoView = self;
         __unsafe_unretained PUPhotoLoadingView *loading = _photoLoadingView;
         
-        [_imageView setImageWithURLString:_photo.urlStr
+        [_imageView setImageWithURLString:_photo.middleUrl
                          placeholderImage:_photo.srcImageView.image
                                   options:SDWebImageRetryFailed|SDWebImageLowPriority
                                  progress:^(NSUInteger receivedSize, long long expectedSize) {

@@ -69,8 +69,7 @@
 	CGContextFillPath(context);
 }
 
-#pragma mark - Property Methods
-
+#pragma mark - getter/setter Methods
 - (UIColor *)trackTintColor
 {
     if (!_trackTintColor)
@@ -84,7 +83,7 @@
 {
     if (!_progressTintColor)
     {
-        _progressTintColor = [UIColor whiteColor];
+        _progressTintColor = [UIColor redColor];
     }
     return _progressTintColor;
 }

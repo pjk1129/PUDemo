@@ -9,12 +9,16 @@
 #import "PUPhotoToolbar.h"
 #import "PUPhoto.h"
 #import "MBProgressHUD+Addition.h"
+#import "SDImageCache.h"
 
 @interface PUPhotoToolbar (){
     // 显示页码
     UILabel *_indexLabel;
     UIButton *_saveImageBtn;
 }
+
+@property (nonatomic, strong) UILabel   *indexLabel;
+@property (nonatomic, strong) UIButton  *saveImageBtn;
 
 @end
 
@@ -25,41 +29,19 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        
+        [self addSubview:self.indexLabel];
+        [self addSubview:self.saveImageBtn];
     }
     return self;
-}
-
-- (void)setPhotos:(NSArray *)photos
-{
-    _photos = photos;
-    
-    if (_photos.count > 1) {
-        _indexLabel = [[UILabel alloc] init];
-        _indexLabel.font = [UIFont boldSystemFontOfSize:20];
-        _indexLabel.frame = self.bounds;
-        _indexLabel.backgroundColor = [UIColor clearColor];
-        _indexLabel.textColor = [UIColor whiteColor];
-        _indexLabel.textAlignment = NSTextAlignmentCenter;
-        _indexLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        [self addSubview:_indexLabel];
-    }
-    
-    // 保存图片按钮
-    CGFloat btnWidth = self.bounds.size.height;
-    _saveImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _saveImageBtn.frame = CGRectMake(20, 0, btnWidth, btnWidth);
-    _saveImageBtn.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-    [_saveImageBtn setImage:[UIImage imageNamed:@"MJPhotoBrowser.bundle/save_icon.png"] forState:UIControlStateNormal];
-    [_saveImageBtn setImage:[UIImage imageNamed:@"MJPhotoBrowser.bundle/save_icon_highlighted.png"] forState:UIControlStateHighlighted];
-    [_saveImageBtn addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:_saveImageBtn];
 }
 
 - (void)saveImage
 {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        PUPhoto *photo = _photos[_currentPhotoIndex];
-        UIImageWriteToSavedPhotosAlbum(photo.image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        PUPhoto *photo = [_photos objectAtIndex:_currentPhotoIndex];
+        UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:photo.middleUrl];
+        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
     });
 }
 
@@ -68,11 +50,16 @@
     if (error) {
         [MBProgressHUD showSuccess:@"保存失败" toView:nil];
     } else {
-        PUPhoto *photo = _photos[_currentPhotoIndex];
+        PUPhoto *photo = [_photos objectAtIndex:_currentPhotoIndex];
         photo.save = YES;
-        _saveImageBtn.enabled = NO;
+        self.saveImageBtn.enabled = NO;
         [MBProgressHUD showSuccess:@"成功保存到相册" toView:nil];
     }
+}
+
+#pragma mark - setter
+- (void)setPhotos:(NSArray *)photos{
+    _photos = photos;
 }
 
 - (void)setCurrentPhotoIndex:(NSUInteger)currentPhotoIndex
@@ -80,12 +67,39 @@
     _currentPhotoIndex = currentPhotoIndex;
     
     // 更新页码
-    _indexLabel.text = [NSString stringWithFormat:@"%lu / %lu", _currentPhotoIndex + 1, (unsigned long)_photos.count];
+    self.indexLabel.text = [NSString stringWithFormat:@"%lu / %lu", _currentPhotoIndex + 1, (unsigned long)_photos.count];
     
-    PUPhoto *photo = _photos[_currentPhotoIndex];
+    PUPhoto *photo = [_photos objectAtIndex:_currentPhotoIndex];
+    UIImage *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:photo.middleUrl];
     // 按钮
-    _saveImageBtn.enabled = photo.image != nil && !photo.save;
+    self.saveImageBtn.enabled = (image != nil && !photo.save);
 }
 
+#pragma mark - getter
+- (UILabel *)indexLabel{
+    if (!_indexLabel) {
+        _indexLabel = [[UILabel alloc] initWithFrame:self.bounds];
+        _indexLabel.font = [UIFont systemFontOfSize:20];
+        _indexLabel.backgroundColor = [UIColor clearColor];
+        _indexLabel.textColor = [UIColor whiteColor];
+        _indexLabel.textAlignment = NSTextAlignmentCenter;
+        _indexLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    }
+    return _indexLabel;
+}
+
+- (UIButton *)saveImageBtn{
+    if (!_saveImageBtn) {
+        // 保存图片按钮
+        UIImage  *img = [UIImage imageNamed:@"PUPhotoBrowser.bundle/save_icon.png"];
+        _saveImageBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _saveImageBtn.frame = CGRectMake(20, floor((CGRectGetHeight(self.frame)-img.size.height)/2), img.size.width, img.size.height);
+        _saveImageBtn.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+        [_saveImageBtn setImage:img forState:UIControlStateNormal];
+        [_saveImageBtn setImage:[UIImage imageNamed:@"PUPhotoBrowser.bundle/save_icon_highlighted.png"] forState:UIControlStateHighlighted];
+        [_saveImageBtn addTarget:self action:@selector(saveImage) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _saveImageBtn;
+}
 
 @end

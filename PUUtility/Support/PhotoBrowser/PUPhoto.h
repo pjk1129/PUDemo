@@ -10,12 +10,14 @@
 
 @interface PUPhoto : NSObject
 
-@property (nonatomic, strong) NSString *urlStr;
-@property (nonatomic, strong) UIImage *image; // 完整的图片
+@property (nonatomic, strong) NSString  *middleUrl;
+@property (nonatomic, strong) NSString  *thumbnailUrl;
 
+@property (nonatomic, strong) UIImage *image; // 完整的图片
 @property (nonatomic, strong) UIImageView *srcImageView; // 来源view
-@property (nonatomic, strong, readonly) UIImage *placeholder;
-@property (nonatomic, strong, readonly) UIImage *capture;
+
+@property (nonatomic, strong) UIImage *placeholder;
+@property (nonatomic, strong) UIImage *capture;
 
 @property (nonatomic, assign) BOOL firstShow;
 
