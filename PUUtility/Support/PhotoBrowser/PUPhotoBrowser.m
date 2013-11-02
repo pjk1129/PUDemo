@@ -11,6 +11,8 @@
 #import "PUPhoto.h"
 #import "PUPhotoView.h"
 #import "PUPhotoToolbar.h"
+#import "SDImageCache.h"
+#import "SDWebImageManager.h"
 
 #define kPadding 10
 #define kPhotoViewTagOffset 1000
@@ -39,7 +41,6 @@
 - (void)loadView
 {
     _statusBarHiddenInited = [UIApplication sharedApplication].isStatusBarHidden;
-    // 隐藏状态栏
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     self.view = [[UIView alloc] init];
     self.view.frame = [UIScreen mainScreen].bounds;
@@ -50,10 +51,7 @@
 {
     [super viewDidLoad];
     
-    // 1.创建UIScrollView
     [self createScrollView];
-    
-    // 2.创建工具条
     [self createToolbar];
 }
 
@@ -68,8 +66,7 @@
     }
 }
 
-#pragma mark - 私有方法
-#pragma mark 创建工具条
+#pragma mark - 创建工具条
 - (void)createToolbar
 {
     CGFloat barHeight = 44;
@@ -83,7 +80,7 @@
     [self updateTollbarState];
 }
 
-#pragma mark 创建UIScrollView
+#pragma mark - 创建UIScrollView
 - (void)createScrollView
 {
     CGRect frame = self.view.bounds;
@@ -96,8 +93,9 @@
 	_photoScrollView.showsHorizontalScrollIndicator = NO;
 	_photoScrollView.showsVerticalScrollIndicator = NO;
 	_photoScrollView.backgroundColor = [UIColor clearColor];
-    _photoScrollView.contentSize = CGSizeMake(frame.size.width * _photos.count, 0);
 	[self.view addSubview:_photoScrollView];
+    
+    _photoScrollView.contentSize = CGSizeMake(frame.size.width * _photos.count, 0);
     _photoScrollView.contentOffset = CGPointMake(_currentPhotoIndex * frame.size.width, 0);
 }
 
@@ -117,7 +115,7 @@
     }
 }
 
-#pragma mark 设置选中的图片
+#pragma mark - 设置选中的图片
 - (void)setCurrentPhotoIndex:(NSUInteger)currentPhotoIndex
 {
     _currentPhotoIndex = currentPhotoIndex;
@@ -156,7 +154,7 @@
     _toolbar.currentPhotoIndex = _currentPhotoIndex;
 }
 
-#pragma mark 显示照片
+#pragma mark - 显示照片
 - (void)showPhotos
 {
     // 只有一张图片
@@ -195,7 +193,7 @@
 	}
 }
 
-#pragma mark 显示一个图片view
+#pragma mark - 显示一个图片view
 - (void)showPhotoViewAtIndex:(NSInteger)index
 {
     PUPhotoView *photoView = [self dequeueReusablePhotoView];
@@ -221,21 +219,29 @@
     [self loadImageNearIndex:index];
 }
 
-#pragma mark 加载index附近的图片
+#pragma mark - 加载index附近的图片
 - (void)loadImageNearIndex:(NSInteger)index
 {
     if (index > 0) {
         PUPhoto *photo = _photos[index - 1];
-//        [SDWebImageManager downloadWithURL:photo.url];
+        [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:photo.middleUrl]
+                                                   options:SDWebImageRetryFailed|SDWebImageLowPriority
+                                                  progress:^(NSUInteger receivedSize, long long expectedSize) {
+                                                  } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+                                                  }];
     }
     
     if (index < _photos.count - 1) {
         PUPhoto *photo = _photos[index + 1];
-//        [SDWebImageManager downloadWithURL:photo.url];
+        [[SDWebImageManager sharedManager] downloadWithURL:[NSURL URLWithString:photo.middleUrl]
+                                                   options:SDWebImageRetryFailed|SDWebImageLowPriority
+                                                  progress:^(NSUInteger receivedSize, long long expectedSize) {
+                                                  } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished) {
+                                                  }];
     }
 }
 
-#pragma mark index这页是否正在显示
+#pragma mark - index这页是否正在显示
 - (BOOL)isShowingPhotoViewAtIndex:(NSUInteger)index {
 	for (PUPhotoView *photoView in _visiblePhotoViews) {
 		if (kPhotoViewIndex(photoView) == index) {
@@ -245,7 +251,7 @@
 	return  NO;
 }
 
-#pragma mark 循环利用某个view
+#pragma mark - 循环利用某个view
 - (PUPhotoView *)dequeueReusablePhotoView
 {
     PUPhotoView *photoView = [_reusablePhotoViews anyObject];
@@ -255,7 +261,7 @@
 	return photoView;
 }
 
-#pragma mark 更新toolbar状态
+#pragma mark - 更新toolbar状态
 - (void)updateTollbarState
 {
     _currentPhotoIndex = _photoScrollView.contentOffset.x / _photoScrollView.frame.size.width;

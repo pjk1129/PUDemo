@@ -34,6 +34,7 @@
 		854B5B0818227D15003727A3 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 854B5AFB18227D15003727A3 /* UIImageView+WebCache.m */; };
 		854B5B0B182285FF003727A3 /* PUHttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 854B5B0A182285FF003727A3 /* PUHttpRequest.m */; };
 		854B5B0F18229C22003727A3 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 854B5B0E18229C22003727A3 /* TestViewController.m */; };
+		855807A91824F0EE002E9DB5 /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 855807A81824F0EE002E9DB5 /* PhotosViewController.m */; };
 		859EC05218224DD70050C6C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859EC05118224DD70050C6C6 /* Foundation.framework */; };
 		859EC05418224DD70050C6C6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859EC05318224DD70050C6C6 /* CoreGraphics.framework */; };
 		859EC05618224DD70050C6C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859EC05518224DD70050C6C6 /* UIKit.framework */; };
@@ -130,6 +131,8 @@
 		854B5B0A182285FF003727A3 /* PUHttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUHttpRequest.m; sourceTree = "<group>"; };
 		854B5B0D18229C22003727A3 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		854B5B0E18229C22003727A3 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		855807A71824F0EE002E9DB5 /* PhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosViewController.h; sourceTree = "<group>"; };
+		855807A81824F0EE002E9DB5 /* PhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosViewController.m; sourceTree = "<group>"; };
 		859EC04E18224DD70050C6C6 /* PUDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PUDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		859EC05118224DD70050C6C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		859EC05318224DD70050C6C6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -325,6 +328,8 @@
 			children = (
 				854B5B0D18229C22003727A3 /* TestViewController.h */,
 				854B5B0E18229C22003727A3 /* TestViewController.m */,
+				855807A71824F0EE002E9DB5 /* PhotosViewController.h */,
+				855807A81824F0EE002E9DB5 /* PhotosViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -569,6 +574,7 @@
 				854B5AFC18227D15003727A3 /* Reachability.m in Sources */,
 				936F80F618234047004F4DAA /* KLSwitch.m in Sources */,
 				854B5ABF18227935003727A3 /* ASIAuthenticationDialog.m in Sources */,
+				855807A91824F0EE002E9DB5 /* PhotosViewController.m in Sources */,
 				854B5AFF18227D15003727A3 /* SDWebImageCompat.m in Sources */,
 				936F811718236FCE004F4DAA /* PUPhotoView.m in Sources */,
 				854B5B0B182285FF003727A3 /* PUHttpRequest.m in Sources */,
