@@ -11,16 +11,25 @@
 #import "PUPhotoLoadingView.h"
 #import "UIImageView+WebCache.h"
 #import <QuartzCore/QuartzCore.h>
-
+#import "UIImage+Utilities.h"
 
 @interface PUPhotoView (){
     BOOL _doubleTap;
-    UIImageView *_imageView;
     PUPhotoLoadingView *_photoLoadingView;
 }
+
 @end
 
 @implementation PUPhotoView
+
+- (void)dealloc
+{
+    // 取消请求
+    [_imageView resetImage];
+    _imageView = nil;
+    _photoViewDelegate = nil;
+    _photo = nil;
+}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -69,19 +78,21 @@
 - (void)showImage
 {
     if (_photo.firstShow) { // 首次显示
-        _imageView.image = _photo.placeholder; // 占位图片
-        _photo.srcImageView.image = nil;
+        UIImage  *placeholder = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:_photo.thumbnailUrl];
+        if (placeholder == nil) {
+            placeholder = [UIImage imageNamed:@"PUPhotoBrowser.bundle/icon_placeholder.png"];
+        }
+    
+        _imageView.image = placeholder;
         
         // 不是gif，就马上开始下载
         if (![_photo.middleUrl hasSuffix:@"gif"]) {
             __unsafe_unretained PUPhotoView *photoView = self;
-            __unsafe_unretained PUPhoto *photo = _photo;
+
             [_imageView setImageWithURLString:_photo.middleUrl
-                             placeholderImage:_photo.placeholder
+                             placeholderImage:placeholder
                                       options:SDWebImageRetryFailed|SDWebImageLowPriority
                                     completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                                        photo.image = image;
-                                        
                                         // 调整frame参数
                                         [photoView adjustFrame];
                                     }];
@@ -98,9 +109,10 @@
 #pragma mark 开始加载图片
 - (void)photoStartLoad
 {
-    if (_photo.image) {
+    UIImage  *image = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:_photo.middleUrl];
+    if (image) {
         self.scrollEnabled = YES;
-        _imageView.image = _photo.image;
+        _imageView.image = image;
     } else {
         self.scrollEnabled = NO;
         // 直接显示进度条
@@ -110,8 +122,13 @@
         __unsafe_unretained PUPhotoView *photoView = self;
         __unsafe_unretained PUPhotoLoadingView *loading = _photoLoadingView;
         
+        UIImage  *placeholder = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:_photo.thumbnailUrl];
+        if (placeholder == nil) {
+            placeholder = [UIImage imageNamed:@"PUPhotoBrowser.bundle/icon_placeholder.png"];
+        }
+        
         [_imageView setImageWithURLString:_photo.middleUrl
-                         placeholderImage:_photo.srcImageView.image
+                         placeholderImage:placeholder
                                   options:SDWebImageRetryFailed|SDWebImageLowPriority
                                  progress:^(NSUInteger receivedSize, long long expectedSize) {
             if (receivedSize > kMinProgress) {
@@ -128,7 +145,6 @@
 {
     if (image) {
         self.scrollEnabled = YES;
-        _photo.image = image;
         [_photoLoadingView removeFromSuperview];
         
         if ([self.photoViewDelegate respondsToSelector:@selector(photoViewImageFinishLoad:)]) {
@@ -182,13 +198,10 @@
     
     if (_photo.firstShow) { // 第一次显示的图片
         _photo.firstShow = NO; // 已经显示过了
-        _imageView.frame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:nil];
-        
         [UIView animateWithDuration:0.3 animations:^{
             _imageView.frame = imageFrame;
         } completion:^(BOOL finished) {
             // 设置底部的小图片
-            _photo.srcImageView.image = _photo.placeholder;
             [self photoStartLoad];
         }];
     } else {
@@ -204,7 +217,7 @@
 #pragma mark - 手势处理
 - (void)handleSingleTap:(UITapGestureRecognizer *)tap {
     _doubleTap = NO;
-    [self performSelector:@selector(hide) withObject:nil afterDelay:0.2];
+    [self performSelector:@selector(hide) withObject:nil afterDelay:0.0];
 }
 - (void)hide
 {
@@ -214,40 +227,16 @@
     [_photoLoadingView removeFromSuperview];
     self.contentOffset = CGPointZero;
     
-    // 清空底部的小图
-    _photo.srcImageView.image = nil;
-    
-    CGFloat duration = 0.15;
-    if (_photo.srcImageView.clipsToBounds) {
-        [self performSelector:@selector(reset) withObject:nil afterDelay:duration];
+    [_imageView resetImage];
+    // 通知代理
+    if ([self.photoViewDelegate respondsToSelector:@selector(photoViewSingleTap:)]) {
+        [self.photoViewDelegate photoViewSingleTap:self];
     }
-    
-    [UIView animateWithDuration:duration + 0.1 animations:^{
-        _imageView.frame = [_photo.srcImageView convertRect:_photo.srcImageView.bounds toView:nil];
-        
-        // gif图片仅显示第0张
-        if (_imageView.image.images) {
-            _imageView.image = _imageView.image.images[0];
-        }
-        
-        // 通知代理
-        if ([self.photoViewDelegate respondsToSelector:@selector(photoViewSingleTap:)]) {
-            [self.photoViewDelegate photoViewSingleTap:self];
-        }
-    } completion:^(BOOL finished) {
-        // 设置底部的小图片
-        _photo.srcImageView.image = _photo.placeholder;
-        
-        // 通知代理
-        if ([self.photoViewDelegate respondsToSelector:@selector(photoViewDidEndZoom:)]) {
-            [self.photoViewDelegate photoViewDidEndZoom:self];
-        }
-    }];
 }
 
 - (void)reset
 {
-    _imageView.image = _photo.capture;
+    _imageView.image = [_imageView.image captureImageInView:_imageView];
     _imageView.contentMode = UIViewContentModeScaleToFill;
 }
 
@@ -261,12 +250,5 @@
 		[self zoomToRect:CGRectMake(touchPoint.x, touchPoint.y, 1, 1) animated:YES];
 	}
 }
-
-- (void)dealloc
-{
-    // 取消请求
-    [_imageView resetImage];
-}
-
 
 @end

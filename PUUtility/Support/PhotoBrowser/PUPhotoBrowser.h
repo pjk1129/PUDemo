@@ -19,11 +19,13 @@
 @property (nonatomic, assign) NSUInteger currentPhotoIndex;
 
 // 显示
-- (void)show;
+- (void)showFromView:(UIView *)fromView;
 @end
 
 @protocol PUPhotoBrowserDelegate <NSObject>
 @optional
 // 切换到某一页图片
 - (void)photoBrowser:(PUPhotoBrowser *)photoBrowser didChangedToPageAtIndex:(NSUInteger)index;
+- (void)photoBrowserDidDone:(PUPhotoBrowser *)photoBrowser;
+
 @end

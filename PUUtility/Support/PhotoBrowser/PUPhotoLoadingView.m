@@ -50,6 +50,19 @@
         _failureLabel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     }
     [self addSubview:_failureLabel];
+    
+    [self performSelector:@selector(hideFailure) withObject:nil afterDelay:1.0f];
+}
+
+- (void)hideFailure
+{
+    [UIView animateWithDuration:0.3f
+                     animations:^{
+                         _failureLabel.alpha = 0.0f;
+                     } completion:^(BOOL finished) {
+                         [_failureLabel removeFromSuperview];
+                         _failureLabel = nil;
+                     }];
 }
 
 - (void)showLoading

@@ -13,7 +13,6 @@
 @protocol PUPhotoViewDelegate <NSObject>
 - (void)photoViewImageFinishLoad:(PUPhotoView *)photoView;
 - (void)photoViewSingleTap:(PUPhotoView *)photoView;
-- (void)photoViewDidEndZoom:(PUPhotoView *)photoView;
 @end
 
 @interface PUPhotoView : UIScrollView<UIScrollViewDelegate>
@@ -21,5 +20,7 @@
 @property (nonatomic, strong) PUPhoto *photo;
 // 代理
 @property (nonatomic, weak) id<PUPhotoViewDelegate> photoViewDelegate;
+
+@property (nonatomic, strong) UIImageView *imageView;
 
 @end

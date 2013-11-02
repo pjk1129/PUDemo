@@ -14,7 +14,7 @@
 
 @interface PhotosViewController ()
 
-@property (nonatomic, strong) NSArray   *urls;
+@property (nonatomic, strong) NSArray   *urlArray;
 
 @end
 
@@ -28,7 +28,7 @@
     self.navigationItem.title = @"图片列表";
     
     // 0.图片链接
-    _urls = @[@"http://ww4.sinaimg.cn/thumbnail/7f8c1087gw1e9g06pc68ug20ag05y4qq.gif", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr0nly5j20pf0gygo6.jpg", @"http://ww4.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr1d0vyj20pf0gytcj.jpg", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr1xydcj20gy0o9q6s.jpg", @"http://ww2.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr2n1jjj20gy0o9tcc.jpg", @"http://ww2.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr39ht9j20gy0o6q74.jpg", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr3xvtlj20gy0obadv.jpg", @"http://ww4.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr4nndfj20gy0o9q6i.jpg", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr57tn9j20gy0obn0f.jpg"];
+    _urlArray = @[@"http://ww4.sinaimg.cn/thumbnail/7f8c1087gw1e9g06pc68ug20ag05y4qq.gif", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr0nly5j20pf0gygo6.jpg", @"http://ww4.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr1d0vyj20pf0gytcj.jpg", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr1xydcj20gy0o9q6s.jpg", @"http://ww2.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr2n1jjj20gy0o9tcc.jpg", @"http://ww2.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr39ht9j20gy0o6q74.jpg", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr3xvtlj20gy0obadv.jpg", @"http://ww4.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr4nndfj20gy0o9q6i.jpg", @"http://ww3.sinaimg.cn/thumbnail/8e88b0c1gw1e9lpr57tn9j20gy0obn0f.jpg"];
     
 	// 1.创建9个UIImageView
     UIImage *placeholder = [UIImage imageNamed:@"timeline_image_loading.png"];
@@ -37,7 +37,7 @@
     CGFloat margin = 20;
     CGFloat startX = (self.view.frame.size.width - 3 * width - 2 * margin) * 0.5;
     CGFloat startY = 100;
-    for (int i = 0; i<[_urls count]; i++) {
+    for (int i = 0; i<[_urlArray count]; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
         [self.view addSubview:imageView];
         
@@ -49,7 +49,7 @@
         imageView.frame = CGRectMake(x, y, width, height);
         
         // 下载图片
-        [imageView setImageWithURLString:_urls[i] placeholderImage:placeholder];
+        [imageView setImageWithURLString:_urlArray[i] placeholderImage:placeholder];
         // 事件监听
         imageView.tag = i;
         imageView.userInteractionEnabled = YES;
@@ -64,17 +64,15 @@
 
 - (void)tapImage:(UITapGestureRecognizer *)tap
 {
-    NSInteger count = _urls.count;
+    NSInteger count = _urlArray.count;
     // 1.封装图片数据
     NSMutableArray *photos = [NSMutableArray arrayWithCapacity:count];
     for (NSInteger i = 0; i<count; i++) {
         // 替换为中等尺寸图片
-        NSString *url = [_urls[i] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+        NSString *url = [[_urlArray objectAtIndex:i] stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
         PUPhoto *photo = [[PUPhoto alloc] init];
         photo.middleUrl = url; // 图片路径
-        //        photo.srcImageView = self.view.subviews[i]; // 来源于哪个UIImageView
-        photo.placeholder = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:_urls[i]];
-        photo.thumbnailUrl = _urls[i];
+        photo.thumbnailUrl = [_urlArray objectAtIndex:i];
         [photos addObject:photo];
     }
     
@@ -82,7 +80,7 @@
     PUPhotoBrowser *browser = [[PUPhotoBrowser alloc] init];
     browser.currentPhotoIndex = tap.view.tag; // 弹出相册时显示的第一张图片是？
     browser.photos = photos; // 设置所有的图片
-    [browser show];
+    [browser showFromView:tap.view];
 }
 
 

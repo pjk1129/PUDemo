@@ -13,12 +13,6 @@
 @property (nonatomic, strong) NSString  *middleUrl;
 @property (nonatomic, strong) NSString  *thumbnailUrl;
 
-@property (nonatomic, strong) UIImage *image; // 完整的图片
-@property (nonatomic, strong) UIImageView *srcImageView; // 来源view
-
-@property (nonatomic, strong) UIImage *placeholder;
-@property (nonatomic, strong) UIImage *capture;
-
 @property (nonatomic, assign) BOOL firstShow;
 
 // 是否已经保存到相册

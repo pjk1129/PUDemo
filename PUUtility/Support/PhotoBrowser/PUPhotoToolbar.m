@@ -58,10 +58,6 @@
 }
 
 #pragma mark - setter
-- (void)setPhotos:(NSArray *)photos{
-    _photos = photos;
-}
-
 - (void)setCurrentPhotoIndex:(NSUInteger)currentPhotoIndex
 {
     _currentPhotoIndex = currentPhotoIndex;
