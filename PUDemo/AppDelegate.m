@@ -19,6 +19,12 @@
     
     TestViewController  *viewController = [[TestViewController alloc] init];
     UINavigationController   *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
+    CGFloat  version = [[[UIDevice currentDevice] systemVersion] floatValue];
+    if (version<7.0) {
+        navController.navigationBar.tintColor = [UIColor orangeColor];
+    }else{
+        navController.navigationBar.barTintColor = [UIColor orangeColor];
+    }
     self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
     return YES;
