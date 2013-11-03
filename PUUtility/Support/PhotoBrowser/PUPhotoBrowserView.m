@@ -95,7 +95,7 @@
     
     [UIApplication sharedApplication].statusBarHidden = _statusBarHiddenInited;
     self.backgroundColor = [UIColor clearColor];
-    self.alpha = 1.0f;
+//    self.alpha = 1.0f;
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     CGRect toRect = _fromRect;
@@ -104,7 +104,7 @@
     
     [UIView animateWithDuration:0.3f
                           delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseInOut
+                        options:UIViewAnimationOptionCurveEaseOut
                      animations:^(void){
                          self.frame = toRect;
                          self.alpha = 0.0f;
