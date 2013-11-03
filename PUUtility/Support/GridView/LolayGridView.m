@@ -271,8 +271,8 @@
     }
     
     for (LolayGridViewCell *cell in self.inUseGridCells) {
-        int rowIndex = cell.rowIndex;
-        int columnIndex = cell.columnIndex;
+        NSInteger rowIndex = cell.rowIndex;
+        NSInteger columnIndex = cell.columnIndex;
         
         if (rowIndex == deletedCell.rowIndex) {
             if (columnIndex > deletedCell.columnIndex) {

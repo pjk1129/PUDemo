@@ -513,7 +513,7 @@
         {
             [UIView beginAnimations:nil context:NULL];
             [UIView setAnimationDuration:.3];
-            CGFloat bottom = scrollView.contentInset.bottom;
+//            CGFloat bottom = scrollView.contentInset.bottom;
             [scrollView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, scrollView.contentInset.bottom, 0.0f)];
             [UIView commitAnimations];
         }
