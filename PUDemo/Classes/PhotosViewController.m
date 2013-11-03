@@ -103,12 +103,6 @@
     return gridCell;
 }
 
-- (void)gridView:(LolayGridView*)gridView didReuseCell:(LolayGridViewCell*)gridCell
-{
-    
-}
-
-
 #pragma mark- LolayGridViewDelegate
 - (CGFloat)heightForGridViewRows:(LolayGridView*)gridView
 {
@@ -137,27 +131,5 @@
     }
 
 }
-
-
-- (UIView *)headerIndicatorViewForGridView:(LolayGridView *)gridView
-{
-    return nil;
-}
-
--(UIView *)footerIndicatorViewForGridView:(LolayGridView *)gridView
-{
-    return nil;
-}
-
-- (UIView *)headerViewForGridView:(LolayGridView *)gridView
-{
-    return nil;
-}
-
-- (UIView *)footerViewForGridView:(LolayGridView *)gridView
-{
-    return nil;
-}
-
 
 @end
