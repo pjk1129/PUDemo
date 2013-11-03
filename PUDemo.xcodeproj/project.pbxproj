@@ -48,6 +48,19 @@
 		859EC07518224DD70050C6C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 859EC07318224DD70050C6C6 /* InfoPlist.strings */; };
 		859EC07718224DD70050C6C6 /* PUDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 859EC07618224DD70050C6C6 /* PUDemoTests.m */; };
 		85AE293C1825EB7A00730625 /* PUPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE293B1825EB7A00730625 /* PUPhotoBrowserView.m */; };
+		85AE296E182644EB00730625 /* LolayGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE295E182644EB00730625 /* LolayGridView.m */; };
+		85AE296F182644EB00730625 /* LolayGridViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE2960182644EB00730625 /* LolayGridViewCell.m */; };
+		85AE2970182644EB00730625 /* RefreshCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE2962182644EB00730625 /* RefreshCell.m */; };
+		85AE2971182644EB00730625 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AE2964182644EB00730625 /* blackArrow.png */; };
+		85AE2972182644EB00730625 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AE2965182644EB00730625 /* blackArrow@2x.png */; };
+		85AE2973182644EB00730625 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AE2966182644EB00730625 /* blueArrow.png */; };
+		85AE2974182644EB00730625 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AE2967182644EB00730625 /* blueArrow@2x.png */; };
+		85AE2975182644EB00730625 /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AE2968182644EB00730625 /* grayArrow.png */; };
+		85AE2976182644EB00730625 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AE2969182644EB00730625 /* grayArrow@2x.png */; };
+		85AE2977182644EB00730625 /* refresh_release.wav in Resources */ = {isa = PBXBuildFile; fileRef = 85AE296A182644EB00730625 /* refresh_release.wav */; };
+		85AE2978182644EB00730625 /* refresh_triggering.wav in Resources */ = {isa = PBXBuildFile; fileRef = 85AE296B182644EB00730625 /* refresh_triggering.wav */; };
+		85AE2979182644EB00730625 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AE296C182644EB00730625 /* whiteArrow.png */; };
+		85AE297A182644EB00730625 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AE296D182644EB00730625 /* whiteArrow@2x.png */; };
 		85F912151823E010009A7515 /* UIImage+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F912141823E010009A7515 /* UIImage+Utilities.m */; };
 		936F80E618232F61004F4DAA /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80E518232F61004F4DAA /* NSString+Base64.m */; };
 		936F80EE1823308D004F4DAA /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80EA1823308D004F4DAA /* NSDate-Utilities.m */; };
@@ -150,6 +163,22 @@
 		859EC07618224DD70050C6C6 /* PUDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PUDemoTests.m; sourceTree = "<group>"; };
 		85AE293A1825EB7A00730625 /* PUPhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPhotoBrowserView.h; sourceTree = "<group>"; };
 		85AE293B1825EB7A00730625 /* PUPhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPhotoBrowserView.m; sourceTree = "<group>"; };
+		85AE295D182644EB00730625 /* LolayGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LolayGridView.h; sourceTree = "<group>"; };
+		85AE295E182644EB00730625 /* LolayGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LolayGridView.m; sourceTree = "<group>"; };
+		85AE295F182644EB00730625 /* LolayGridViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LolayGridViewCell.h; sourceTree = "<group>"; };
+		85AE2960182644EB00730625 /* LolayGridViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LolayGridViewCell.m; sourceTree = "<group>"; };
+		85AE2961182644EB00730625 /* RefreshCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RefreshCell.h; sourceTree = "<group>"; };
+		85AE2962182644EB00730625 /* RefreshCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RefreshCell.m; sourceTree = "<group>"; };
+		85AE2964182644EB00730625 /* blackArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackArrow.png; sourceTree = "<group>"; };
+		85AE2965182644EB00730625 /* blackArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackArrow@2x.png"; sourceTree = "<group>"; };
+		85AE2966182644EB00730625 /* blueArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueArrow.png; sourceTree = "<group>"; };
+		85AE2967182644EB00730625 /* blueArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueArrow@2x.png"; sourceTree = "<group>"; };
+		85AE2968182644EB00730625 /* grayArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayArrow.png; sourceTree = "<group>"; };
+		85AE2969182644EB00730625 /* grayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "grayArrow@2x.png"; sourceTree = "<group>"; };
+		85AE296A182644EB00730625 /* refresh_release.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = refresh_release.wav; sourceTree = "<group>"; };
+		85AE296B182644EB00730625 /* refresh_triggering.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = refresh_triggering.wav; sourceTree = "<group>"; };
+		85AE296C182644EB00730625 /* whiteArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = whiteArrow.png; sourceTree = "<group>"; };
+		85AE296D182644EB00730625 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		85F912131823E010009A7515 /* UIImage+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utilities.h"; sourceTree = "<group>"; };
 		85F912141823E010009A7515 /* UIImage+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utilities.m"; sourceTree = "<group>"; };
 		936F80E218232E09004F4DAA /* PUCONST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PUCONST.h; sourceTree = "<group>"; };
@@ -219,6 +248,7 @@
 		854B5A8D182278EE003727A3 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				85AE295C182644EB00730625 /* GridView */,
 				936F8103182368A8004F4DAA /* PhotoBrowser */,
 				936F80FA182345B4004F4DAA /* MBProgressHUD */,
 				936F80F318234047004F4DAA /* KLSwitch */,
@@ -407,6 +437,37 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		85AE295C182644EB00730625 /* GridView */ = {
+			isa = PBXGroup;
+			children = (
+				85AE295D182644EB00730625 /* LolayGridView.h */,
+				85AE295E182644EB00730625 /* LolayGridView.m */,
+				85AE295F182644EB00730625 /* LolayGridViewCell.h */,
+				85AE2960182644EB00730625 /* LolayGridViewCell.m */,
+				85AE2961182644EB00730625 /* RefreshCell.h */,
+				85AE2962182644EB00730625 /* RefreshCell.m */,
+				85AE2963182644EB00730625 /* Res */,
+			);
+			path = GridView;
+			sourceTree = "<group>";
+		};
+		85AE2963182644EB00730625 /* Res */ = {
+			isa = PBXGroup;
+			children = (
+				85AE2964182644EB00730625 /* blackArrow.png */,
+				85AE2965182644EB00730625 /* blackArrow@2x.png */,
+				85AE2966182644EB00730625 /* blueArrow.png */,
+				85AE2967182644EB00730625 /* blueArrow@2x.png */,
+				85AE2968182644EB00730625 /* grayArrow.png */,
+				85AE2969182644EB00730625 /* grayArrow@2x.png */,
+				85AE296A182644EB00730625 /* refresh_release.wav */,
+				85AE296B182644EB00730625 /* refresh_triggering.wav */,
+				85AE296C182644EB00730625 /* whiteArrow.png */,
+				85AE296D182644EB00730625 /* whiteArrow@2x.png */,
+			);
+			path = Res;
+			sourceTree = "<group>";
+		};
 		936F80E318232F11004F4DAA /* Expand */ = {
 			isa = PBXGroup;
 			children = (
@@ -534,9 +595,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85AE2975182644EB00730625 /* grayArrow.png in Resources */,
+				85AE2974182644EB00730625 /* blueArrow@2x.png in Resources */,
 				936F810518236917004F4DAA /* PUPhotoBrowser.bundle in Resources */,
+				85AE2979182644EB00730625 /* whiteArrow.png in Resources */,
+				85AE2976182644EB00730625 /* grayArrow@2x.png in Resources */,
 				859EC05C18224DD70050C6C6 /* InfoPlist.strings in Resources */,
+				85AE2972182644EB00730625 /* blackArrow@2x.png in Resources */,
+				85AE2971182644EB00730625 /* blackArrow.png in Resources */,
+				85AE2973182644EB00730625 /* blueArrow.png in Resources */,
 				859EC06418224DD70050C6C6 /* Images.xcassets in Resources */,
+				85AE2977182644EB00730625 /* refresh_release.wav in Resources */,
+				85AE2978182644EB00730625 /* refresh_triggering.wav in Resources */,
+				85AE297A182644EB00730625 /* whiteArrow@2x.png in Resources */,
 				936F80FE182345B4004F4DAA /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -570,12 +641,14 @@
 				855807A91824F0EE002E9DB5 /* PhotosViewController.m in Sources */,
 				854B5AFF18227D15003727A3 /* SDWebImageCompat.m in Sources */,
 				936F811718236FCE004F4DAA /* PUPhotoView.m in Sources */,
+				85AE296F182644EB00730625 /* LolayGridViewCell.m in Sources */,
 				854B5B0B182285FF003727A3 /* PUHttpRequest.m in Sources */,
 				854B5AC618227935003727A3 /* ASINetworkQueue.m in Sources */,
 				854B5B0018227D15003727A3 /* SDWebImageDecoder.m in Sources */,
 				936F81021823460B004F4DAA /* MBProgressHUD+Addition.m in Sources */,
 				854B5B0718227D15003727A3 /* UIImage+MultiFormat.m in Sources */,
 				936F80F218233136004F4DAA /* PUUtil.m in Sources */,
+				85AE296E182644EB00730625 /* LolayGridView.m in Sources */,
 				85AE293C1825EB7A00730625 /* PUPhotoBrowserView.m in Sources */,
 				854B5B0218227D15003727A3 /* SDWebImageDownloaderOperation.m in Sources */,
 				854B5B0118227D15003727A3 /* SDWebImageDownloader.m in Sources */,
@@ -587,6 +660,7 @@
 				854B5AC518227935003727A3 /* ASIInputStream.m in Sources */,
 				854B5AC018227935003727A3 /* ASIDataCompressor.m in Sources */,
 				854B5AFE18227D15003727A3 /* SDImageCache.m in Sources */,
+				85AE2970182644EB00730625 /* RefreshCell.m in Sources */,
 				85F912151823E010009A7515 /* UIImage+Utilities.m in Sources */,
 				936F810B18236D3B004F4DAA /* PUPhoto.m in Sources */,
 				854B5B0518227D15003727A3 /* UIButton+WebCache.m in Sources */,
