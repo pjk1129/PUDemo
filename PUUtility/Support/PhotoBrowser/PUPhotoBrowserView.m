@@ -38,11 +38,14 @@
 @implementation PUPhotoBrowserView
 
 - (void)dealloc{
-    self.photosArray = nil;
+    [_prePhotoView resetPhotoView];
+    [_curPhotoView resetPhotoView];
+    [_nextPhotoView resetPhotoView];
+    _prePhotoView = nil;
+    _curPhotoView = nil;
+    _nextPhotoView = nil;
     
-    for (UIView  *v in [self.photoScrollView subviews]) {
-        [v removeFromSuperview];
-    }
+    self.photosArray = nil;
     self.photoScrollView = nil;
     self.indexLabel = nil;
     self.saveImageBtn = nil;
@@ -94,23 +97,20 @@
 {
     
     [UIApplication sharedApplication].statusBarHidden = _statusBarHiddenInited;
-    self.backgroundColor = [UIColor clearColor];
-//    self.alpha = 1.0f;
-    
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    CGRect toRect = _fromRect;
-    toRect.origin = CGPointMake((window.bounds.size.width-toRect.size.width)/2,
-                                (window.bounds.size.height-toRect.size.height)/2);
+    [_prePhotoView resetPhotoView];
+    [_curPhotoView resetPhotoView];
+    [_nextPhotoView resetPhotoView];
     
     [UIView animateWithDuration:0.3f
                           delay:0.0f
-                        options:UIViewAnimationOptionCurveEaseOut
+                        options:UIViewAnimationOptionCurveEaseInOut
                      animations:^(void){
-                         self.frame = toRect;
+                         self.frame = _fromRect;
                          self.alpha = 0.0f;
                      }
                      completion:^(BOOL finished){
                          [self removeFromSuperview];
+
                      }];
     
     
