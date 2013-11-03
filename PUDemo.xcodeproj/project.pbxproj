@@ -47,6 +47,7 @@
 		859EC06D18224DD70050C6C6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 859EC05518224DD70050C6C6 /* UIKit.framework */; };
 		859EC07518224DD70050C6C6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 859EC07318224DD70050C6C6 /* InfoPlist.strings */; };
 		859EC07718224DD70050C6C6 /* PUDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 859EC07618224DD70050C6C6 /* PUDemoTests.m */; };
+		85AE293C1825EB7A00730625 /* PUPhotoBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE293B1825EB7A00730625 /* PUPhotoBrowserView.m */; };
 		85F912151823E010009A7515 /* UIImage+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F912141823E010009A7515 /* UIImage+Utilities.m */; };
 		936F80E618232F61004F4DAA /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80E518232F61004F4DAA /* NSString+Base64.m */; };
 		936F80EE1823308D004F4DAA /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80EA1823308D004F4DAA /* NSDate-Utilities.m */; };
@@ -149,6 +150,8 @@
 		859EC07218224DD70050C6C6 /* PUDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PUDemoTests-Info.plist"; sourceTree = "<group>"; };
 		859EC07418224DD70050C6C6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		859EC07618224DD70050C6C6 /* PUDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PUDemoTests.m; sourceTree = "<group>"; };
+		85AE293A1825EB7A00730625 /* PUPhotoBrowserView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PUPhotoBrowserView.h; sourceTree = "<group>"; };
+		85AE293B1825EB7A00730625 /* PUPhotoBrowserView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PUPhotoBrowserView.m; sourceTree = "<group>"; };
 		85F912131823E010009A7515 /* UIImage+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utilities.h"; sourceTree = "<group>"; };
 		85F912141823E010009A7515 /* UIImage+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utilities.m"; sourceTree = "<group>"; };
 		936F80E218232E09004F4DAA /* PUCONST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PUCONST.h; sourceTree = "<group>"; };
@@ -460,6 +463,8 @@
 				936F811318236EF3004F4DAA /* PUPhotoLoadingView.m */,
 				936F811518236FCE004F4DAA /* PUPhotoView.h */,
 				936F811618236FCE004F4DAA /* PUPhotoView.m */,
+				85AE293A1825EB7A00730625 /* PUPhotoBrowserView.h */,
+				85AE293B1825EB7A00730625 /* PUPhotoBrowserView.m */,
 			);
 			path = PhotoBrowser;
 			sourceTree = "<group>";
@@ -583,6 +588,7 @@
 				936F81021823460B004F4DAA /* MBProgressHUD+Addition.m in Sources */,
 				854B5B0718227D15003727A3 /* UIImage+MultiFormat.m in Sources */,
 				936F80F218233136004F4DAA /* PUUtil.m in Sources */,
+				85AE293C1825EB7A00730625 /* PUPhotoBrowserView.m in Sources */,
 				854B5B0218227D15003727A3 /* SDWebImageDownloaderOperation.m in Sources */,
 				854B5B0118227D15003727A3 /* SDWebImageDownloader.m in Sources */,
 				854B5B0F18229C22003727A3 /* TestViewController.m in Sources */,

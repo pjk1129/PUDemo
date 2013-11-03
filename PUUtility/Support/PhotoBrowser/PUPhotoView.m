@@ -22,8 +22,7 @@
 
 @implementation PUPhotoView
 
-- (void)dealloc
-{
+- (void)dealloc{
     // 取消请求
     [_imageView resetImage];
     _imageView = nil;
@@ -232,12 +231,6 @@
     if ([self.photoViewDelegate respondsToSelector:@selector(photoViewSingleTap:)]) {
         [self.photoViewDelegate photoViewSingleTap:self];
     }
-}
-
-- (void)reset
-{
-    _imageView.image = [_imageView.image captureImageInView:_imageView];
-    _imageView.contentMode = UIViewContentModeScaleToFill;
 }
 
 - (void)handleDoubleTap:(UITapGestureRecognizer *)tap {

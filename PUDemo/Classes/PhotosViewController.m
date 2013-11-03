@@ -11,8 +11,9 @@
 #import "PUPhoto.h"
 #import "UIImageView+WebCache.h"
 #import "SDImageCache.h"
+#import "PUPhotoBrowserView.h"
 
-@interface PhotosViewController ()
+@interface PhotosViewController ()<PUPhotoBrowserDelegate>
 
 @property (nonatomic, strong) NSArray   *urlArray;
 
@@ -75,13 +76,31 @@
         photo.thumbnailUrl = [_urlArray objectAtIndex:i];
         [photos addObject:photo];
     }
+
+      // 2.显示相册
+//    PUPhotoBrowser *browser = [[PUPhotoBrowser alloc] init];
+//    browser.currentPhotoIndex = tap.view.tag; // 弹出相册时显示的第一张图片是？
+//    browser.photos = photos; // 设置所有的图片
+//    browser.delegate = self;
+//    [browser showFromView:tap.view];
     
-    // 2.显示相册
-    PUPhotoBrowser *browser = [[PUPhotoBrowser alloc] init];
-    browser.currentPhotoIndex = tap.view.tag; // 弹出相册时显示的第一张图片是？
-    browser.photos = photos; // 设置所有的图片
-    [browser showFromView:tap.view];
+    
+    PUPhotoBrowserView  *photoBrowser = [[PUPhotoBrowserView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    photoBrowser.currentPhotoIndex = tap.view.tag;
+    photoBrowser.photosArray = photos;
+    [photoBrowser showFromView:tap.view];
 }
 
+#pragma mark - PUPhotoBrowserDelegate
+- (void)photoBrowser:(PUPhotoBrowser *)photoBrowser didChangedToPageAtIndex:(NSUInteger)index
+{
+    
+}
+
+- (void)photoBrowserDidDone:(PUPhotoBrowser *)photoBrowser
+{
+    [photoBrowser.view removeFromSuperview];
+    photoBrowser = nil;
+}
 
 @end

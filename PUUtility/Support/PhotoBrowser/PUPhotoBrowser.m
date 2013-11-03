@@ -39,11 +39,24 @@
 @implementation PUPhotoBrowser
 
 - (void)dealloc{
+    for (NSObject *obj in [self.photoScrollView subviews]) {
+        if ([obj isKindOfClass:[PUPhotoView class]]) {
+            [(PUPhotoView *)obj setPhotoViewDelegate:nil];
+        }
+    }
     self.photoScrollView = nil;
     self.toolbar = nil;
     self.photos = nil;
+    for (PUPhotoView  *pView in _visiblePhotoViews) {
+        pView.photoViewDelegate = nil;
+    }
     _visiblePhotoViews = nil;
+    
+    for (PUPhotoView  *pView in _reusablePhotoViews) {
+        pView.photoViewDelegate = nil;
+    }
     _reusablePhotoViews = nil;
+    _delegate = nil;
 }
 
 #pragma mark - Lifecycle
@@ -77,7 +90,7 @@
                          self.view.alpha = 1.0f;
                      }
                      completion:^(BOOL finished) {
-                         [window.rootViewController addChildViewController:self];
+//                         [window.rootViewController addChildViewController:self];
                          [self showPhotos];
                      }];
 
@@ -88,42 +101,32 @@
 #pragma mark - PUPhotoViewDelegate
 - (void)photoViewSingleTap:(PUPhotoView *)photoView
 {
-    self.view.alpha = 1.0f;
     
-//    UIView *toView = [UIApplication sharedApplication].keyWindow;
+    [UIApplication sharedApplication].statusBarHidden = _statusBarHiddenInited;
+    self.view.backgroundColor = [UIColor clearColor];
+    [_toolbar removeFromSuperview];
     
-//    CGRect toRect = _fromRect;
-//    toRect.origin = CGPointMake((toView.bounds.size.width-toRect.size.width)/2,
-//                                (toView.bounds.size.height-toRect.size.height)/2);
-    
-    __weak UIView  *myView = self.view;
+    self.view.alpha = 1.0f;    
     [UIView animateWithDuration:0.3f
                           delay:0.0f
                         options:UIViewAnimationOptionCurveEaseInOut
                      animations:^(void){
-                         myView.frame = _fromRect;
-                         myView.alpha = 0.0f;
+                         self.view.alpha = 0.0f;
                      }
                      completion:^(BOOL finished){
-                         [UIApplication sharedApplication].statusBarHidden = _statusBarHiddenInited;
-                         myView.backgroundColor = [UIColor clearColor];
-                         
-                         // 移除工具条
-//                         [_toolbar removeFromSuperview];
-                         
-//                         [myView removeFromSuperview];
-//                         [self removeFromParentViewController];
+
                      }];
+
     
-    
-//    [UIApplication sharedApplication].statusBarHidden = _statusBarHiddenInited;
-//    self.view.backgroundColor = [UIColor clearColor];
-//    
-//    // 移除工具条
-//    [_toolbar removeFromSuperview];
-//    
-//    [self.view removeFromSuperview];
+    [self performSelector:@selector(dismiss) withObject:nil afterDelay:.5f];
+}
+
+- (void)dismiss{
+    [self.view removeFromSuperview];
 //    [self removeFromParentViewController];
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    NSLog(@"%@",[window subviews]);
 }
 
 - (void)photoViewImageFinishLoad:(PUPhotoView *)photoView
@@ -162,7 +165,7 @@
     while (_reusablePhotoViews.count > 2) {
         [_reusablePhotoViews removeObject:[_reusablePhotoViews anyObject]];
     }
-	
+    
 	for (NSUInteger index = firstIndex; index <= lastIndex; index++) {
 		if (![self isShowingPhotoViewAtIndex:index]) {
 			[self showPhotoViewAtIndex:index];
@@ -257,7 +260,11 @@
 
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-	[self showPhotos];
+
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+    [self showPhotos];
     [self updateTollbarState];
 }
 
