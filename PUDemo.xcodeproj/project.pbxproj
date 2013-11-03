@@ -65,6 +65,9 @@
 		85AE298118265B9D00730625 /* TestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE298018265B9D00730625 /* TestManager.m */; };
 		85AE298518265D6000730625 /* APITestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE298418265D6000730625 /* APITestViewController.m */; };
 		85AE29881826631500730625 /* QiuShi.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE29871826631500730625 /* QiuShi.m */; };
+		85AE298D18267CE400730625 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AE298C18267CE400730625 /* AudioToolbox.framework */; };
+		85AE298F18267E6B00730625 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AE298E18267E6B00730625 /* QuartzCore.framework */; };
+		85AE299118267F2F00730625 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 85AE299018267F2F00730625 /* ImageIO.framework */; };
 		85F912151823E010009A7515 /* UIImage+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F912141823E010009A7515 /* UIImage+Utilities.m */; };
 		936F80E618232F61004F4DAA /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80E518232F61004F4DAA /* NSString+Base64.m */; };
 		936F80EE1823308D004F4DAA /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80EA1823308D004F4DAA /* NSDate-Utilities.m */; };
@@ -192,6 +195,9 @@
 		85AE298418265D6000730625 /* APITestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APITestViewController.m; sourceTree = "<group>"; };
 		85AE29861826631500730625 /* QiuShi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiuShi.h; sourceTree = "<group>"; };
 		85AE29871826631500730625 /* QiuShi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiuShi.m; sourceTree = "<group>"; };
+		85AE298C18267CE400730625 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		85AE298E18267E6B00730625 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		85AE299018267F2F00730625 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		85F912131823E010009A7515 /* UIImage+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utilities.h"; sourceTree = "<group>"; };
 		85F912141823E010009A7515 /* UIImage+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utilities.m"; sourceTree = "<group>"; };
 		936F80E218232E09004F4DAA /* PUCONST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PUCONST.h; sourceTree = "<group>"; };
@@ -226,6 +232,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				85AE299118267F2F00730625 /* ImageIO.framework in Frameworks */,
+				85AE298F18267E6B00730625 /* QuartzCore.framework in Frameworks */,
+				85AE298D18267CE400730625 /* AudioToolbox.framework in Frameworks */,
 				854B5ADA18227A4B003727A3 /* SystemConfiguration.framework in Frameworks */,
 				854B5AD818227A37003727A3 /* CFNetwork.framework in Frameworks */,
 				854B5AD618227A2E003727A3 /* MobileCoreServices.framework in Frameworks */,
@@ -402,6 +411,9 @@
 		859EC05018224DD70050C6C6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				85AE299018267F2F00730625 /* ImageIO.framework */,
+				85AE298E18267E6B00730625 /* QuartzCore.framework */,
+				85AE298C18267CE400730625 /* AudioToolbox.framework */,
 				854B5AD918227A4B003727A3 /* SystemConfiguration.framework */,
 				854B5AD718227A37003727A3 /* CFNetwork.framework */,
 				854B5AD518227A2E003727A3 /* MobileCoreServices.framework */,
@@ -597,6 +609,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = njut;
 				TargetAttributes = {
+					859EC04D18224DD70050C6C6 = {
+						DevelopmentTeam = 7LHNC8MXW7;
+					};
 					859EC06818224DD70050C6C6 = {
 						TestTargetID = 859EC04D18224DD70050C6C6;
 					};
@@ -823,10 +838,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing iTotem Tech Co., Ltd.";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PUDemo/PUDemo-Prefix.pch";
 				INFOPLIST_FILE = "PUDemo/PUDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "F288BF7F-2ED8-48E4-B33B-E105118ED27B";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -837,10 +854,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing iTotem Tech Co., Ltd.";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PUDemo/PUDemo-Prefix.pch";
 				INFOPLIST_FILE = "PUDemo/PUDemo-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "F288BF7F-2ED8-48E4-B33B-E105118ED27B";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

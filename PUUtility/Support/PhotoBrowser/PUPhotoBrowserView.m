@@ -266,7 +266,7 @@
     _currentPhotoIndex = currentPhotoIndex;
     
     if ([_photosArray count]>0) {
-        self.indexLabel.text = [NSString stringWithFormat:@"%lu / %lu", _currentPhotoIndex + 1, (unsigned long)_photosArray.count];
+        self.indexLabel.text = [NSString stringWithFormat:@"%u / %lu", _currentPhotoIndex + 1, (unsigned long)_photosArray.count];
 
     }
 }

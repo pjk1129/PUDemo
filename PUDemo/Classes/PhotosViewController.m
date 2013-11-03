@@ -55,7 +55,7 @@
 #pragma mark - PUPhotoBrowserDelegate
 - (void)photoBrowser:(PUPhotoBrowserView *)photoBrowser pageAtCurrentIndex:(NSUInteger)index;
 {
-    NSLog(@"%lu",index);
+    NSLog(@"%lu",(unsigned long)index);
     
 }
 

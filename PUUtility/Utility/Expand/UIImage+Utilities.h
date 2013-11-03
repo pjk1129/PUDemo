@@ -9,6 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIImage (Utilities)
-- (UIImage *)captureImageInView:(UIView *)view;
 
 @end

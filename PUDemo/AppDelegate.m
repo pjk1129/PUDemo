@@ -23,7 +23,7 @@
     if (version<7.0) {
         navController.navigationBar.tintColor = [UIColor orangeColor];
     }else{
-        navController.navigationBar.barTintColor = [UIColor orangeColor];
+        navController.navigationBar.tintColor = [UIColor orangeColor];
     }
     self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
