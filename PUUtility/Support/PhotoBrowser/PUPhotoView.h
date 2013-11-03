@@ -23,4 +23,5 @@
 
 @property (nonatomic, strong) UIImageView *imageView;
 
+- (void)resetPhotoView;
 @end

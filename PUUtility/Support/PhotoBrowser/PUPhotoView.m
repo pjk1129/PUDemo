@@ -14,8 +14,8 @@
 #import "UIImage+Utilities.h"
 
 @interface PUPhotoView (){
-    BOOL _doubleTap;
     PUPhotoLoadingView *_photoLoadingView;
+    BOOL   _doubleTap;
 }
 
 @end
@@ -35,22 +35,21 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+		self.backgroundColor = [UIColor clearColor];
         self.clipsToBounds = YES;
-		// 图片
+		self.delegate = self;
+		self.showsHorizontalScrollIndicator = NO;
+		self.showsVerticalScrollIndicator = NO;
+		self.decelerationRate = UIScrollViewDecelerationRateFast;
+		self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        // 图片
 		_imageView = [[UIImageView alloc] init];
 		_imageView.contentMode = UIViewContentModeScaleAspectFit;
 		[self addSubview:_imageView];
         
         // 进度条
         _photoLoadingView = [[PUPhotoLoadingView alloc] init];
-		
-		// 属性
-		self.backgroundColor = [UIColor clearColor];
-		self.delegate = self;
-		self.showsHorizontalScrollIndicator = NO;
-		self.showsVerticalScrollIndicator = NO;
-		self.decelerationRate = UIScrollViewDecelerationRateFast;
-		self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         
         // 监听点击
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
@@ -64,6 +63,12 @@
 
     }
     return self;
+}
+
+- (void)resetPhotoView
+{
+    [_imageView resetImage];
+    _photoViewDelegate = nil;
 }
 
 #pragma mark - photoSetter
@@ -217,10 +222,15 @@
 - (void)handleSingleTap:(UITapGestureRecognizer *)tap {
     _doubleTap = NO;
     [self performSelector:@selector(hide) withObject:nil afterDelay:0.0];
+
 }
+
+
 - (void)hide
 {
-    if (_doubleTap) return;
+    if (_doubleTap) {
+        return;
+    }
     
     // 移除进度条
     [_photoLoadingView removeFromSuperview];

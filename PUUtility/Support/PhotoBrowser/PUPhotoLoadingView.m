@@ -7,7 +7,6 @@
 //
 
 #import "PUPhotoLoadingView.h"
-#import "PUPhotoBrowser.h"
 #import <QuartzCore/QuartzCore.h>
 #import "PUPhotoProgressView.h"
 

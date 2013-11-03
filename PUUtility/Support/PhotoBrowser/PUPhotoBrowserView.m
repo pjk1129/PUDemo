@@ -10,10 +10,16 @@
 #import "MBProgressHUD+Addition.h"
 #import "PUPhoto.h"
 #import "SDImageCache.h"
+#import "PUPhotoView.h"
 
 #define kPBVPadding 10
 
-@interface PUPhotoBrowserView ()<UIScrollViewDelegate>{
+#define kFramePrePhotoView    CGRectMake(kPBVPadding, 0, CGRectGetWidth(self.photoScrollView.frame)-2*kPBVPadding, CGRectGetHeight(self.photoScrollView.frame))
+#define kFrameCurPhotoView    CGRectMake(kPBVPadding+CGRectGetWidth(self.photoScrollView.frame), 0, CGRectGetWidth(self.photoScrollView.frame)-2*kPBVPadding, CGRectGetHeight(self.photoScrollView.frame))
+#define kFrameNextPhotoView   CGRectMake(kPBVPadding+2*CGRectGetWidth(self.photoScrollView.frame), 0, CGRectGetWidth(self.photoScrollView.frame)-2*kPBVPadding, CGRectGetHeight(self.photoScrollView.frame))
+
+
+@interface PUPhotoBrowserView ()<UIScrollViewDelegate,PUPhotoViewDelegate>{
     
     BOOL      _statusBarHiddenInited;
     CGRect    _fromRect;
@@ -23,6 +29,9 @@
 @property (nonatomic, strong) UIView         *toolBarView;
 @property (nonatomic, strong) UILabel        *indexLabel;
 @property (nonatomic, strong) UIButton       *saveImageBtn;
+@property (nonatomic, strong) PUPhotoView    *prePhotoView;
+@property (nonatomic, strong) PUPhotoView    *curPhotoView;
+@property (nonatomic, strong) PUPhotoView    *nextPhotoView;
 
 @end
 
@@ -62,10 +71,9 @@
     [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationFade];
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    
+    _fromRect = [fromView convertRect:fromView.bounds toView:nil];
     self.alpha = 0.0f;
-    self.frame = [fromView convertRect:fromView.bounds toView:window];
-    _fromRect = self.frame;
+    self.frame = _fromRect;
     [window addSubview:self];
     
     [UIView animateWithDuration:0.3f
@@ -81,6 +89,38 @@
     
 }
 
+#pragma mark - PUPhotoViewDelegate
+- (void)photoViewSingleTap:(PUPhotoView *)photoView
+{
+    
+    [UIApplication sharedApplication].statusBarHidden = _statusBarHiddenInited;
+    self.backgroundColor = [UIColor clearColor];
+    self.alpha = 1.0f;
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    CGRect toRect = _fromRect;
+    toRect.origin = CGPointMake((window.bounds.size.width-toRect.size.width)/2,
+                                (window.bounds.size.height-toRect.size.height)/2);
+    
+    [UIView animateWithDuration:0.3f
+                          delay:0.0f
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^(void){
+                         self.frame = toRect;
+                         self.alpha = 0.0f;
+                     }
+                     completion:^(BOOL finished){
+                         [self removeFromSuperview];
+                     }];
+    
+    
+}
+
+- (void)photoViewImageFinishLoad:(PUPhotoView *)photoView
+{
+    self.currentPhotoIndex = _currentPhotoIndex;
+}
+
 #pragma mark - UIScrollView Delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
@@ -88,21 +128,138 @@
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
 
-    [self updateTollbarState];
+    
+    //scrollview结束滚动时判断是否已经换页
+	if (self.photoScrollView.contentOffset.x > self.photoScrollView.bounds.size.width) {
+        [self nextPage];
+        
+	} else if (self.photoScrollView.contentOffset.x < self.photoScrollView.bounds.size.width) {
+        [self forwardPage];
+	}
 }
 
-- (void)updateTollbarState
+- (void)nextPage
 {
-    _currentPhotoIndex = self.photoScrollView.contentOffset.x / self.photoScrollView.frame.size.width;
-    self.currentPhotoIndex = _currentPhotoIndex;
+    PUPhotoView  *temp = nil;
+    temp = self.curPhotoView;
+    self.curPhotoView = self.nextPhotoView;
+    self.nextPhotoView = self.prePhotoView;
+    self.prePhotoView = temp;
+    
+    self.prePhotoView.frame = kFramePrePhotoView;
+    self.curPhotoView.frame = kFrameCurPhotoView;
+    self.nextPhotoView.frame = kFrameNextPhotoView;
+    
+    [self.photoScrollView setContentOffset:CGPointMake(self.photoScrollView.bounds.size.width, 0.0)];
+    
+    if (self.currentPhotoIndex >= [_photosArray count]-1) {
+        self.currentPhotoIndex = 0;
+    }else{
+        self.currentPhotoIndex = self.currentPhotoIndex+1;
+    }
+    
+    [self loadImageNearIndex:self.currentPhotoIndex];
+}
+
+- (void)forwardPage
+{
+    PUPhotoView  *temp = nil;
+    temp = self.curPhotoView;
+    self.curPhotoView = self.prePhotoView;
+    self.prePhotoView = self.nextPhotoView;
+    self.nextPhotoView = temp;
+    
+    self.prePhotoView.frame = kFramePrePhotoView;
+    self.curPhotoView.frame = kFrameCurPhotoView;
+    self.nextPhotoView.frame = kFrameNextPhotoView;
+
+    [self.photoScrollView setContentOffset:CGPointMake(self.photoScrollView.bounds.size.width, 0.0)];
+    
+    if (self.currentPhotoIndex <= 0) {
+        self.currentPhotoIndex = [_photosArray count]-1;
+    }else{
+        self.currentPhotoIndex = self.currentPhotoIndex-1;
+    }
+    
+    [self loadImageNearIndex:self.currentPhotoIndex];
+
+}
+
+- (void)loadImageNearIndex:(NSInteger)index
+{
+    PUPhoto *preObj = nil;
+    PUPhoto *nextObj = nil;
+    if (index <= 0) {
+        preObj = [_photosArray lastObject];
+        nextObj = [_photosArray objectAtIndex:_currentPhotoIndex+1];
+    }else if(index >= [_photosArray count]-1){
+        preObj = [_photosArray objectAtIndex:_currentPhotoIndex - 1];
+        nextObj = [_photosArray objectAtIndex:0];
+    }else{
+        preObj = [_photosArray objectAtIndex:_currentPhotoIndex-1];
+        nextObj = [_photosArray objectAtIndex:_currentPhotoIndex + 1];
+    }
+    self.prePhotoView.photo = preObj;
+    self.nextPhotoView.photo = nextObj;
+    
+    if ([_delegate respondsToSelector:@selector(photoBrowser:pageAtCurrentIndex:)]) {
+        [_delegate photoBrowser:self pageAtCurrentIndex:index];
+    }
 }
 
 #pragma mark - setter
 - (void)setPhotosArray:(NSArray *)photosArray{
     _photosArray = photosArray;
     
+    [[_photoScrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    self.currentPhotoIndex = _currentPhotoIndex;
+    if ([_photosArray count]>0) {
+        if ([_photosArray count]==1) {
+            _currentPhotoIndex = 0;
+            self.curPhotoView.frame = kFrameCurPhotoView;
+            [self.photoScrollView addSubview:self.curPhotoView];
+            
+        }else if([_photosArray count]>1){
+            self.prePhotoView.frame = kFramePrePhotoView;
+            self.curPhotoView.frame = kFrameCurPhotoView;
+            self.nextPhotoView.frame = kFrameNextPhotoView;
+            
+            [self.photoScrollView addSubview:self.prePhotoView];
+            [self.photoScrollView addSubview:self.curPhotoView];
+            [self.photoScrollView addSubview:self.nextPhotoView];
+            
+            PUPhoto *preObj = nil;
+            PUPhoto *nextObj = nil;
+            if (_currentPhotoIndex <= 0) {
+                _currentPhotoIndex = 0;
+                preObj = [_photosArray lastObject];
+                nextObj = [_photosArray objectAtIndex:_currentPhotoIndex+1];
+            }else if(_currentPhotoIndex >= [_photosArray count]-1){
+                _currentPhotoIndex = [_photosArray count]-1;
+                preObj = [_photosArray objectAtIndex:_currentPhotoIndex - 1];
+                nextObj = [_photosArray objectAtIndex:0];
+            }else{
+                preObj = [_photosArray objectAtIndex:_currentPhotoIndex-1];
+                nextObj = [_photosArray objectAtIndex:_currentPhotoIndex + 1];
+            }
+            self.prePhotoView.photo = preObj;
+            self.nextPhotoView.photo = nextObj;
+        }
+        
+        self.curPhotoView.photo = [_photosArray objectAtIndex:_currentPhotoIndex];
+
+        self.currentPhotoIndex = _currentPhotoIndex;
+        
+        if ([_photosArray count]<=1) {
+            self.photoScrollView.contentOffset = CGPointMake(0, 0);
+            self.photoScrollView.contentSize = CGSizeMake(self.photoScrollView.bounds.size.width,
+                                                       self.photoScrollView.bounds.size.height);
+        }else{
+            self.photoScrollView.contentOffset = CGPointMake(self.photoScrollView.bounds.size.width, 0);
+            self.photoScrollView.contentSize = CGSizeMake(3*self.photoScrollView.bounds.size.width,
+                                                       self.photoScrollView.bounds.size.height);
+        }
+    }
 }
 
 - (void)setCurrentPhotoIndex:(NSUInteger)currentPhotoIndex{
@@ -129,6 +286,31 @@
         _photoScrollView.backgroundColor = [UIColor clearColor];
     }
     return _photoScrollView;
+}
+
+- (PUPhotoView *)prePhotoView{
+    if (!_prePhotoView) {
+        _prePhotoView = [[PUPhotoView alloc] initWithFrame:kFramePrePhotoView];
+        _prePhotoView.photoViewDelegate = self;
+        _prePhotoView.userInteractionEnabled = YES;
+    }
+    return _prePhotoView;
+}
+- (PUPhotoView *)curPhotoView{
+    if (!_curPhotoView) {
+        _curPhotoView = [[PUPhotoView alloc] initWithFrame:kFrameCurPhotoView];
+        _curPhotoView.photoViewDelegate = self;
+        _curPhotoView.userInteractionEnabled = YES;
+    }
+    return _curPhotoView;
+}
+- (PUPhotoView *)nextPhotoView{
+    if (!_nextPhotoView) {
+        _nextPhotoView = [[PUPhotoView alloc] initWithFrame:kFrameNextPhotoView];
+        _nextPhotoView.photoViewDelegate = self;
+        _nextPhotoView.userInteractionEnabled = YES;
+    }
+    return _nextPhotoView;
 }
 
 - (UIView *)toolBarView{
