@@ -62,6 +62,9 @@
 		85AE2979182644EB00730625 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AE296C182644EB00730625 /* whiteArrow.png */; };
 		85AE297A182644EB00730625 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 85AE296D182644EB00730625 /* whiteArrow@2x.png */; };
 		85AE297D1826459800730625 /* PhotoViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE297C1826459800730625 /* PhotoViewCell.m */; };
+		85AE298118265B9D00730625 /* TestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE298018265B9D00730625 /* TestManager.m */; };
+		85AE298518265D6000730625 /* APITestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE298418265D6000730625 /* APITestViewController.m */; };
+		85AE29881826631500730625 /* QiuShi.m in Sources */ = {isa = PBXBuildFile; fileRef = 85AE29871826631500730625 /* QiuShi.m */; };
 		85F912151823E010009A7515 /* UIImage+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 85F912141823E010009A7515 /* UIImage+Utilities.m */; };
 		936F80E618232F61004F4DAA /* NSString+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80E518232F61004F4DAA /* NSString+Base64.m */; };
 		936F80EE1823308D004F4DAA /* NSDate-Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 936F80EA1823308D004F4DAA /* NSDate-Utilities.m */; };
@@ -182,6 +185,13 @@
 		85AE296D182644EB00730625 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whiteArrow@2x.png"; sourceTree = "<group>"; };
 		85AE297B1826459800730625 /* PhotoViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewCell.h; sourceTree = "<group>"; };
 		85AE297C1826459800730625 /* PhotoViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewCell.m; sourceTree = "<group>"; };
+		85AE297F18265B9D00730625 /* TestManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestManager.h; sourceTree = "<group>"; };
+		85AE298018265B9D00730625 /* TestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestManager.m; sourceTree = "<group>"; };
+		85AE298218265BB600730625 /* APIDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIDefine.h; sourceTree = "<group>"; };
+		85AE298318265D6000730625 /* APITestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APITestViewController.h; sourceTree = "<group>"; };
+		85AE298418265D6000730625 /* APITestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APITestViewController.m; sourceTree = "<group>"; };
+		85AE29861826631500730625 /* QiuShi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QiuShi.h; sourceTree = "<group>"; };
+		85AE29871826631500730625 /* QiuShi.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QiuShi.m; sourceTree = "<group>"; };
 		85F912131823E010009A7515 /* UIImage+Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Utilities.h"; sourceTree = "<group>"; };
 		85F912141823E010009A7515 /* UIImage+Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Utilities.m"; sourceTree = "<group>"; };
 		936F80E218232E09004F4DAA /* PUCONST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PUCONST.h; sourceTree = "<group>"; };
@@ -356,12 +366,16 @@
 		854B5B0C18229C06003727A3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				85AE298218265BB600730625 /* APIDefine.h */,
+				85AE297E18265B7D00730625 /* Model */,
 				854B5B0D18229C22003727A3 /* TestViewController.h */,
 				854B5B0E18229C22003727A3 /* TestViewController.m */,
 				855807A71824F0EE002E9DB5 /* PhotosViewController.h */,
 				855807A81824F0EE002E9DB5 /* PhotosViewController.m */,
 				85AE297B1826459800730625 /* PhotoViewCell.h */,
 				85AE297C1826459800730625 /* PhotoViewCell.m */,
+				85AE298318265D6000730625 /* APITestViewController.h */,
+				85AE298418265D6000730625 /* APITestViewController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -471,6 +485,17 @@
 				85AE296D182644EB00730625 /* whiteArrow@2x.png */,
 			);
 			path = Res;
+			sourceTree = "<group>";
+		};
+		85AE297E18265B7D00730625 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				85AE29861826631500730625 /* QiuShi.h */,
+				85AE29871826631500730625 /* QiuShi.m */,
+				85AE297F18265B9D00730625 /* TestManager.h */,
+				85AE298018265B9D00730625 /* TestManager.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		936F80E318232F11004F4DAA /* Expand */ = {
@@ -655,6 +680,8 @@
 				936F80F218233136004F4DAA /* PUUtil.m in Sources */,
 				85AE296E182644EB00730625 /* LolayGridView.m in Sources */,
 				85AE293C1825EB7A00730625 /* PUPhotoBrowserView.m in Sources */,
+				85AE298118265B9D00730625 /* TestManager.m in Sources */,
+				85AE29881826631500730625 /* QiuShi.m in Sources */,
 				854B5B0218227D15003727A3 /* SDWebImageDownloaderOperation.m in Sources */,
 				854B5B0118227D15003727A3 /* SDWebImageDownloader.m in Sources */,
 				854B5B0F18229C22003727A3 /* TestViewController.m in Sources */,
@@ -669,6 +696,7 @@
 				85F912151823E010009A7515 /* UIImage+Utilities.m in Sources */,
 				936F810B18236D3B004F4DAA /* PUPhoto.m in Sources */,
 				854B5B0518227D15003727A3 /* UIButton+WebCache.m in Sources */,
+				85AE298518265D6000730625 /* APITestViewController.m in Sources */,
 				859EC05E18224DD70050C6C6 /* main.m in Sources */,
 				936F810E18236DBA004F4DAA /* PUPhotoProgressView.m in Sources */,
 				854B5B0818227D15003727A3 /* UIImageView+WebCache.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "TestViewController.h"
 #import "PhotosViewController.h"
+#import "APITestViewController.h"
 
 @interface TestViewController ()
 
@@ -29,7 +30,7 @@
     [self.view addSubview:button];
     
     UIButton  *button1 = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button1 setTitle:@"HTTP请求测试" forState:UIControlStateNormal];
+    [button1 setTitle:@"糗事API测试" forState:UIControlStateNormal];
     button1.frame = CGRectMake(110, CGRectGetHeight(self.view.frame)/2+20, 100, 40);
     [button1 addTarget:self action:@selector(httpRequest) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button1];
@@ -43,7 +44,8 @@
 }
 
 - (void)httpRequest{
-    
+    APITestViewController  *controller = [[APITestViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 @end
