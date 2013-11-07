@@ -9,6 +9,7 @@
 #import "TestViewController.h"
 #import "PhotosViewController.h"
 #import "APITestViewController.h"
+#import "UIImageView+WebCache.h"
 
 @interface TestViewController ()
 
@@ -34,7 +35,6 @@
     button1.frame = CGRectMake(110, CGRectGetHeight(self.view.frame)/2+20, 100, 40);
     [button1 addTarget:self action:@selector(httpRequest) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button1];
-    
     
 }
 

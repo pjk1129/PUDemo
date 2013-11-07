@@ -13,8 +13,6 @@
 @property (nonatomic, strong) NSString  *middleUrl;
 @property (nonatomic, strong) NSString  *thumbnailUrl;
 
-@property (nonatomic, assign) BOOL firstShow;
-
 // 是否已经保存到相册
 @property (nonatomic, assign) BOOL save;
 @property (nonatomic, assign) NSInteger index; // 索引

@@ -84,31 +84,8 @@
 
 #pragma mark 显示图片
 - (void)showImage
-{
-    if (_photo.firstShow) { // 首次显示
-        UIImage  *placeholder = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:_photo.thumbnailUrl];
-        if (placeholder == nil) {
-            placeholder = [UIImage imageNamed:@"PUPhotoBrowser.bundle/icon_placeholder.png"];
-        }
-    
-        _imageView.image = placeholder;
-        
-        // 不是gif，就马上开始下载
-        if (![_photo.middleUrl hasSuffix:@"gif"]) {
-            __unsafe_unretained PUPhotoView *photoView = self;
-
-            [_imageView setImageWithURLString:_photo.middleUrl
-                             placeholderImage:placeholder
-                                      options:SDWebImageRetryFailed|SDWebImageLowPriority
-                                    completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-                                        // 调整frame参数
-                                        [photoView adjustFrame];
-                                    }];
-        
-        }
-    } else {
-        [self photoStartLoad];
-    }
+{    
+    [self photoStartLoad];
     
     // 调整frame参数
     [self adjustFrame];
@@ -126,9 +103,8 @@
         // 直接显示进度条
         [_photoLoadingView showLoading];
         [self addSubview:_photoLoadingView];
-        
-        __unsafe_unretained PUPhotoView *photoView = self;
-        __unsafe_unretained PUPhotoLoadingView *loading = _photoLoadingView;
+                
+        __weak PUPhotoView  *thisSelf = self;
         
         UIImage  *placeholder = [[SDImageCache sharedImageCache] imageFromDiskCacheForKey:_photo.thumbnailUrl];
         if (placeholder == nil) {
@@ -139,13 +115,23 @@
                          placeholderImage:placeholder
                                   options:SDWebImageRetryFailed|SDWebImageLowPriority
                                  progress:^(NSUInteger receivedSize, long long expectedSize) {
-            if (receivedSize > kMinProgress) {
-                loading.progress = (float)receivedSize/expectedSize;
-            }
-        } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
-            [photoView photoDidFinishLoadWithImage:image];
-        }];
+                                     
+                                     if (receivedSize > kMinProgress) {
+                                         NSNumber  *percentValue = [NSNumber numberWithFloat:(float)receivedSize/expectedSize];
+                                         PUPhotoView  *pView = thisSelf;
+                                         [pView performSelectorOnMainThread:@selector(updateLoadingProgress:) withObject:percentValue waitUntilDone:YES];
+                                         
+                                     }
+                                 } completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                                     PUPhotoView  *photoView = thisSelf;
+                                     [photoView photoDidFinishLoadWithImage:image];
+                                 }];
     }
+}
+
+- (void)updateLoadingProgress:(NSNumber *)progress
+{
+    _photoLoadingView.progress = [progress floatValue];
 }
 
 #pragma mark 加载完毕
@@ -203,18 +189,8 @@
 	} else {
         imageFrame.origin.y = 0;
 	}
-    
-    if (_photo.firstShow) { // 第一次显示的图片
-        _photo.firstShow = NO; // 已经显示过了
-        [UIView animateWithDuration:0.3 animations:^{
-            _imageView.frame = imageFrame;
-        } completion:^(BOOL finished) {
-            // 设置底部的小图片
-            [self photoStartLoad];
-        }];
-    } else {
-        _imageView.frame = imageFrame;
-    }
+    _imageView.frame = imageFrame;
+
 }
 
 #pragma mark - UIScrollViewDelegate
